@@ -40,6 +40,5 @@ https://docs.google.com/spreadsheets/d/1liO8nAz4DhkNmQwtNYmJFi0YoPwyBReYpYVhyv3J
 - 仮想環境：Vagrant,VirtualBox
 
 ## 使用素材
-
 - ロゴ作成・・・designevo
 - ドメイン取得・・・お名前.com
