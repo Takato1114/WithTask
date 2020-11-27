@@ -1,2 +1,17 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+<%= current_user.nickname %>さんの登録情報です。
+
+<table>
+  <tbody>
+    <tr>
+      <td>ニックネーム</td>
+      <td><%= current_user.nickname %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= current_user.email %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to '編集する', edit_user_path(current_user.id), class:"btn btn-primary" %>

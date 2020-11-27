@@ -1,2 +1,16 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
+ユーザ情報編集ページです。
+<%= form_with url: user_path, model:@user, local: true do |f| %>
+  <div class="field">
+    <%= f.label :ニックネーム %><br />
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+<%= f.submit "　編集内容を保存する　", class:"btn btn-info" %>
+<% end %>
+
