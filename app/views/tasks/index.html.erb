@@ -30,7 +30,7 @@
     <% end %>
 
     <h2>タスク一覧</h2>
-    <table class ="table">
+    <table class ="table table-sortable">
       <thead>
         <tr>
         <th>タスク名</th>
@@ -42,13 +42,13 @@
       </thead>
       <body>
       <% @tasks.each do |task| %>
-      <tr>
+        <%= content_tag "tr", class: "item", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
         <td><%= task.task_name %></td>
         <td><%= task.deadline %></td>
         <td><%= task.scheduled_time %></td>
         <td><%= task.status %></td>
         <td><%= link_to "タスク詳細へ", task_path(task.id)%></td>
-      </tr>
+      <% end %>
       <% end %>
       </body>
 </table>
