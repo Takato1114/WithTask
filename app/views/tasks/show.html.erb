@@ -1,2 +1,30 @@
 <h1>Tasks#show</h1>
 <p>Find me in app/views/tasks/show.html.erb</p>
+
+<h2>タスク詳細</h2>
+<%= form_with model:@task, method: :post, local:true do |f| %>
+
+  <div class="field">
+    <%= f.label :タスク名 %><br />
+    <%= f.text_field :task_name, autocomplete: "task_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :タスク概要 %><br />
+    <%= f.text_field :task_summary, autofocus: true, autocomplete: "task_summary" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :締め切り日 %><br />
+    <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :予定時間 %><br />
+    <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "タスク作成" %>
+  </div>
+<% end %>

@@ -1,2 +1,55 @@
 <h1>Tasks#index</h1>
-<p>Find me in app/views/tasks/index.html.erb</p>
+  <p>タスク管理メニュー</p>
+    <h2>タスク追加</h2>
+    <%= form_with model:@task, method: :post, local:true do |f| %>
+
+      <div class="field">
+        <%= f.label :タスク名 %><br />
+        <%= f.text_field :task_name, autocomplete: "task_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :タスク概要 %><br />
+        <%= f.text_field :task_summary, autofocus: true, autocomplete: "task_summary" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :締め切り日 %><br />
+        <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :予定時間 %><br />
+        <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "タスク作成" %>
+      </div>
+    <% end %>
+
+    <h2>タスク一覧</h2>
+    <table class ="table">
+      <thead>
+        <tr>
+        <th>タスク名</th>
+        <th>締め切り日</th>
+        <th>予定時間</th>
+        <th>ステータス</th>
+        <th colspan="3"></th>
+        </tr>
+      </thead>
+      <body>
+      <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.task_name %></td>
+        <td><%= task.deadline %></td>
+        <td><%= task.scheduled_time %></td>
+        <td><%= task.status %></td>
+        <td><%= link_to "タスク詳細へ", task_path(task.id)%></td>
+      </tr>
+      <% end %>
+      </body>
+</table>
+
