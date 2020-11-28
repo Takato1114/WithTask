@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = Task.where(user_id: current_user.id)
+    @tasks = Task.rank(:row_order)
   end
 
   def create
@@ -26,9 +26,15 @@ class TasksController < ApplicationController
   def update
   end
 
+  def sort
+    task = Task.find(params[:task_id])
+    task.update(task_params)
+    render body: nil
+  end
+
   private
     def task_params
-      params.require(:task).permit(:task_name, :task_summary, :deadline, :scheduled_time)
+      params.require(:task).permit(:task_name, :task_summary, :deadline, :scheduled_time, :row_order_position)
     end
 
 end

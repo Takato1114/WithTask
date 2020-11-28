@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
-  get 'articles/new'
-  get 'articles/index'
-  get 'articles/create'
-  get 'articles/show'
-  get 'articles/destroy'
-  get 'articles/edit'
-  get 'articles/update'
-  get 'tasks/index'
-  get 'tasks/create'
-  get 'tasks/show'
-  get 'tasks/destroy'
-  get 'tasks/edit'
-  get 'tasks/update'
-  get 'users/show'
-  get 'users/edit'
-  get 'users/update'
-  get 'users/unsubscribe'
-  get 'users/quit_update'
-  get 'homes/top_before_login'
-  get 'homes/top_after_login'
-  get 'homes/about'
+  # get 'articles/new'
+  # get 'articles/index'
+  # get 'articles/create'
+  # get 'articles/show'
+  # get 'articles/destroy'
+  # get 'articles/edit'
+  # get 'articles/update'
+  # get 'tasks/index'
+  # get 'tasks/create'
+  # get 'tasks/show'
+  # get 'tasks/destroy'
+  # get 'tasks/edit'
+  # get 'tasks/update'
+  # get 'users/show'
+  # get 'users/edit'
+  # get 'users/update'
+  # get 'users/unsubscribe'
+  # get 'users/quit_update'
+  # get 'homes/top_before_login'
+  # get 'homes/top_after_login'
+  # get 'homes/about'
   devise_for :users
   get '' => 'homes#top_before_login'
   get '/homes/top' => 'homes#top_after_login'
@@ -27,7 +27,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   get '/users/:id/unsubscribe' => 'users#unsubscribe'
   patch '/users/:id/quit' => 'users#quit_update'
-  resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
+  # resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
+  resources :tasks do
+    put :sort
+  end
   resources :articles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
