@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = Task.rank(:row_order)
+    @tasks = Task.where(user_id: current_user.id).rank(:row_order)
   end
 
   def create
@@ -15,15 +15,27 @@ class TasksController < ApplicationController
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to tasks_path
   end
 
   def edit
+    @task = Task.find(params[:id])
+
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+       redirect_to task_path(@task.id) ,notice: "successfully updated."
+    else
+    render :edit
+    end
   end
 
   def sort

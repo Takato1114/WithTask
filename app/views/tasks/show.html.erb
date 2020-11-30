@@ -1,30 +1,33 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
-
 <h2>タスク詳細</h2>
-<%= form_with model:@task, method: :post, local:true do |f| %>
 
-  <div class="field">
-    <%= f.label :タスク名 %><br />
-    <%= f.text_field :task_name, autocomplete: "task_name" %>
-  </div>
+<table class ="table">
+  <tr>
+    <td>タスク名</td>
+    <td><%= @task.task_name %></td>
+  </tr>
+  <tr>
+    <td>タスク概要</td>
+    <td><%= @task.task_summary %></td>
+  </tr>
+  <tr>
+    <td>締め切り日</td>
+    <td><%= @task.deadline %></td>
+  </tr>
+  <tr>
+    <td>予定時間</td>
+    <td><% @task.scheduled_time %></td>
+  </tr>
+  <tr>
+    <td>実績時間</td>
+    <td><%= @task.actual_time %></td>
+  </tr>
+  <tr>
+    <td>ステータス</td>
+    <td><%= @task.status %></td>
+  </tr>
+</table>
 
-  <div class="field">
-    <%= f.label :タスク概要 %><br />
-    <%= f.text_field :task_summary, autofocus: true, autocomplete: "task_summary" %>
-  </div>
+<%= link_to 'タスク編集へ', edit_task_path(@task.id), class:"btn btn-primary" %>
+<%= link_to 'タスクを削除する', task_path(@task.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
 
-  <div class="field">
-    <%= f.label :締め切り日 %><br />
-    <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :予定時間 %><br />
-    <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "タスク作成" %>
-  </div>
-<% end %>
+<%= link_to '記事投稿へ', new_article_path(@task.id), class:"btn btn-primary" %>
