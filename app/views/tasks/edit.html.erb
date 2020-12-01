@@ -1,2 +1,36 @@
-<h1>Tasks#edit</h1>
-<p>Find me in app/views/tasks/edit.html.erb</p>
+<h1>タスク編集画面</h1>
+
+<%= form_with model:@task, local:true do |f| %>
+  <div class="field">
+    <%= f.label :タスク名 %><br />
+    <%= f.text_field :task_name, autofocus: true, autocomplete: "task_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :タスク概要 %><br />
+    <%= f.text_field :task_summary, autocomplete: "task_summary" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :締め切り日 %><br />
+    <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :予定時間 %><br />
+    <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :実績時間 %><br />
+    <%= f.text_field :actual_time, autofocus: true, autocomplete: "scheduled_time" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ステータス %><br />
+    <%= f.text_field :status, autofocus: true, autocomplete: "scheduled_time" %>
+  </div>
+
+    <%= f.submit "タスクを編集する" %>
+  </div>
+<% end %>
