@@ -6,5 +6,7 @@ class User < ApplicationRecord
          
   has_many :tasks
   has_many :articles
+  has_many :article_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
 end

@@ -17,7 +17,43 @@
     <td>参考URL</td>
     <td><%= @article.reference_url %></td>
   </tr>
+  <tr>
+    <td>いいね数</td>
+    <td>
+      <% if @article.favorited_by?(current_user) %>
+        <%= link_to article_favorites_path(@article), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+          <%= @article.favorites.count %> いいね
+        <% end %>
+      <% else %>
+        <%= link_to article_favorites_path(@article), method: :post do %>
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+          <%= @article.favorites.count %> いいね
+        <% end %>
+      <% end %>
+      </td>
+  </tr>
+  <tr>
+    <td>コメント数</td>
+    <td><%= @article.article_comments.count %>件</td>
+  </tr>
 </table>
+<table>
+  <% @article.article_comments.each do |article_comment| %>
+    <tr>
+      <td><%= article_comment.user.nickname %></td>
+    	<td><%= article_comment.comment %></td>
+    	<% if current_user == article_comment.user %>
+      	<td><%= link_to 'Destroy', article_article_comment_path(article_comment.article_id, article_comment.id), class: 'btn-sm btn-danger', method: :delete %></td>
+    	<% end %>
+    </tr>
+  <% end %>
+</table>
+    <%= form_with model:[@article,@article_comment], local: true do |f| %>
+      <%= f.text_area :comment, size:"90x5" %>
+      <%= f.submit '送信'%>
+    <% end %>
+
 
 <%= link_to '記事編集へ', edit_article_path(@article.id), class:"btn btn-primary" %>
 <%= link_to '記事を削除する', article_path(@article.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
