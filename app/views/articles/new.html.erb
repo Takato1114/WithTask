@@ -1,2 +1,24 @@
-<h1>Articles#new</h1>
-<p>Find me in app/views/articles/new.html.erb</p>
+<h1>記事投稿</h1>
+
+<%= form_with model:@article, method: :post, local:true do |f| %>
+  <div class="field">
+    <%= f.label :説明欄 %><br />
+    <%= f.text_area :explanation, autocomplete: "task_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ジャンル %><br />
+    <%= f.text_field :genre, autofocus: true, autocomplete: "task_summary" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :参考URL %><br />
+    <%= f.text_field :reference_url, autofocus: true, autocomplete: "deadline" %>
+  </div>
+  
+  <%= f.hidden_field :task_id, :value => @task.id %>
+
+  <div class="actions">
+    <%= f.submit "記事作成" %>
+  </div>
+<% end %>

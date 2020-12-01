@@ -1,2 +1,15 @@
-<h1>Articles#show</h1>
-<p>Find me in app/views/articles/show.html.erb</p>
+<h2>記事詳細</h2>
+
+<table class ="table">
+  <tr>
+    <td>説明欄</td>
+    <td><%= @article.explanation %></td>
+  </tr>
+  <tr>
+    <td>参考URL</td>
+    <td><%= @article.reference_url %></td>
+  </tr>
+</table>
+
+<%= link_to '記事編集へ', edit_article_path(@article.id), class:"btn btn-primary" %>
+<%= link_to '記事を削除する', article_path(@article.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
