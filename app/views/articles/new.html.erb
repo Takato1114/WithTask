@@ -2,6 +2,11 @@
 
 <%= form_with model:@article, method: :post, local:true do |f| %>
   <div class="field">
+    <%= f.label :タイトル %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
     <%= f.label :説明欄 %><br />
     <%= f.text_area :explanation %>
   </div>
@@ -15,7 +20,7 @@
     <%= f.label :参考URL %><br />
     <%= f.text_field :reference_url %>
   </div>
-  
+
   <%= f.hidden_field :task_id, :value => @task.id %>
 
   <div class="actions">
