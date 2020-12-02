@@ -38,6 +38,16 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_status
+    @task = Task.find(params[:task_id])
+    if @task.update(task_params)
+       redirect_to tasks_path ,notice: "successfully updated."
+    else
+    render :index
+    end
+
+  end
+
   def sort
     task = Task.find(params[:task_id])
     task.update(task_params)
@@ -46,7 +56,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:task_name, :task_summary, :deadline, :scheduled_time, :row_order_position)
+      params.require(:task).permit(:task_name, :task_summary, :deadline, :scheduled_time, :status, :row_order_position)
     end
 
 end

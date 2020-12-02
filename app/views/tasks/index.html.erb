@@ -1,29 +1,26 @@
-<h1>タスク管理メニュー</h1>
+<h1>Task Menu</h1>
     <%= form_with model:@task, method: :post, local:true do |f| %>
-      <div class="field">
-        <%= f.label :タスク名 %><br />
-        <%= f.text_field :task_name, autocomplete: "task_name" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :タスク概要 %><br />
-        <%= f.text_field :task_summary, autofocus: true, autocomplete: "task_summary" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :締め切り日 %><br />
-        <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
-      </div>
-
-      <div class="field">
-        <%= f.label :予定時間 %><br />
-        <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
-      </div>
-
-
-      <div class="actions">
-        <%= f.submit "タスク作成" %>
-      </div>
+    <table class ="table">
+      <tr>
+        <td><%= f.label :タスク名 %></td>
+        <td><%= f.text_field :task_name, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :タスク概要 %></td>
+        <td><%= f.text_area :task_summary %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :締め切り日 %></td>
+        <td><%= f.date_field :deadline %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :ステータス %></td>
+        <td><%= f.select :status, Task.statuses.keys %></td>
+      </tr>
+    </table>
+    <div class="actions">
+      <%= f.submit "タスク作成" %>
+    </div>
     <% end %>
 
     <h2>タスク一覧</h2>
@@ -32,7 +29,6 @@
         <tr>
         <th>タスク名</th>
         <th>締め切り日</th>
-        <th>予定時間</th>
         <th>ステータス</th>
         <th colspan="3"></th>
         </tr>
@@ -41,9 +37,23 @@
       <% @tasks.each do |task| %>
         <%= content_tag "tr", class: "item", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
         <td><%= task.task_name %></td>
-        <td><%= task.deadline %></td>
-        <td><%= task.scheduled_time %></td>
-        <td><%= task.status %></td>
+        <td>
+          <% today = Date.today
+             diff  = task.deadline - today %>
+        <% if diff.to_i <= 0 %>
+        <p class="red-text"><%= task.deadline %></p>
+        <% elsif diff.to_i <= 3 %>
+        <p class="yellow-text"><%= task.deadline %></p>
+        <% else %>
+        <p class="test-color"><%= task.deadline %></p>
+        <% end %>
+        </td>
+        <td>
+          <%= form_with model:task, url: task_update_status_path(task_id: task.id), method: :patch, local:true, data: {"turbolinks" => false} do |f| %>
+          <%= f.select :status, Task.statuses.keys %>
+          <%= f.submit "更新" %>
+          <% end %>
+        </td>
         <td><%= link_to "タスク詳細へ", task_path(task)%></td>
       <% end %>
       <% end %>
