@@ -5,10 +5,10 @@ class ArticleCommentsController < ApplicationController
     @article_comment = current_user.article_comments.new(article_comment_params)
     @article_comment.article_id = @article.id
     if @article_comment.save
-      redirect_to article_path(@article.id)
+      # redirect_to article_path(@article.id)
     else
       @user = User.find(current_user.id)
-      render  "articles/show"
+      # render  "articles/show"
     end
   end
 

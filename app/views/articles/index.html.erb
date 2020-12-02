@@ -7,6 +7,8 @@
       <th>説明欄</th>
       <th>ジャンル</th>
       <th>作成者</th>
+      <th>いいね数</th>
+      <th>コメント数</th>
       </tr>
     </thead>
     <body>
@@ -16,6 +18,10 @@
       <td><%= article.explanation %></td>
       <td><%= article.genre %></td>
       <td><%= article.user.nickname %></td>
+      <td id ="favorite-btn_<%= article.id %>">
+			  <%= render partial: 'favorites/favorite-btn', locals: { article: article} %>
+		  </td>
+			<td><%= article.article_comments.count %>件</td>
       <td><%= link_to "記事詳細へ", article_path(article)%></td>
     <% end %>
     </body>
