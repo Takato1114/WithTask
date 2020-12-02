@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.date :deadline
       t.integer :scheduled_time
       t.integer :actual_time
-      t.integer :status, default: 0, null: false
+      t.integer :status, null: false
       t.timestamps
     end
   end

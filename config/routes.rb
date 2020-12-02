@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # get 'homes/top_after_login'
   # get 'homes/about'
   devise_for :users
-  get '' => 'homes#top_before_login'
+  get 'root' => 'homes#top_before_login'
   get '/homes/top' => 'homes#top_after_login'
   get '/homes/about' => 'homes#about'
   resources :users, only: [:show, :edit, :update]
@@ -29,8 +29,10 @@ Rails.application.routes.draw do
   patch '/users/:id/quit' => 'users#quit_update'
   # resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :tasks do
+    patch '/update_status' =>'tasks#update_status'
     put :sort
   end
+
   resources :articles do
     resource :favorites, only: [:create, :destroy]
     resources :article_comments, only: [:create, :destroy]

@@ -1,36 +1,25 @@
 <h1>タスク編集画面</h1>
 
 <%= form_with model:@task, local:true do |f| %>
-  <div class="field">
-    <%= f.label :タスク名 %><br />
-    <%= f.text_field :task_name, autofocus: true, autocomplete: "task_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :タスク概要 %><br />
-    <%= f.text_field :task_summary, autocomplete: "task_summary" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :締め切り日 %><br />
-    <%= f.text_field :deadline, autofocus: true, autocomplete: "deadline" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :予定時間 %><br />
-    <%= f.text_field :scheduled_time, autofocus: true, autocomplete: "scheduled_time" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :実績時間 %><br />
-    <%= f.text_field :actual_time, autofocus: true, autocomplete: "scheduled_time" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :ステータス %><br />
-    <%= f.text_field :status, autofocus: true, autocomplete: "scheduled_time" %>
-  </div>
-
-    <%= f.submit "タスクを編集する" %>
-  </div>
-<% end %>
+  <table class ="table">
+      <tr>
+        <td><%= f.label :タスク名 %></td>
+        <td><%= f.text_field :task_name, autofocus: true %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :タスク概要 %></td>
+        <td><%= f.text_area :task_summary %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :締め切り日 %></td>
+        <td><%= f.date_field :deadline %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :ステータス %></td>
+        <td><%= f.select :status, Task.statuses.keys %></td>
+      </tr>
+    </table>
+    <div class="actions">
+      <%= f.submit "タスクを編集する" %>
+    </div>
+    <% end %>
