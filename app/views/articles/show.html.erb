@@ -1,5 +1,15 @@
 <h2>記事詳細</h2>
 
+<% unless @article.tags.blank? %>
+  <ul>
+    <% @article.tags.each do |tag| %>
+      <li>
+        <%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <table class ="table">
   <tr>
     <td>タイトル</td>
@@ -10,8 +20,11 @@
     <td><%= @article.explanation %></td>
   </tr>
   <tr>
-    <td>ジャンル</td>
-    <td><%= @article.genre %></td>
+    <td>タグ</td>
+    <td><% @article_tags.each do |tag| %>
+          <p>#<%= tag.tag_name %></p>
+        <% end %>
+    </td>
   </tr>
   <tr>
     <td>参考URL</td>
