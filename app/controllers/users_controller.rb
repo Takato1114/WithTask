@@ -16,9 +16,15 @@ class UsersController < ApplicationController
   end
 
   def unsubscribe
+    @user = current_user
   end
 
   def quit_update
+    @user = User.find(current_user.id)
+    @user.update(quit_flag: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   private

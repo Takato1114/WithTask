@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  
+
   get 'root' => 'homes#top_before_login'
   get '/homes/top' => 'homes#top_after_login'
   get '/homes/about' => 'homes#about'
+  get '/users/unsubscribe' => 'users#unsubscribe'
+  patch '/users/quit' => 'users#quit_update'
   resources :users, only: [:show, :edit, :update]
-  get '/users/:id/unsubscribe' => 'users#unsubscribe'
-  patch '/users/:id/quit' => 'users#quit_update'
   # resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :tasks do
     patch '/update_status' =>'tasks#update_status'
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   end
 
   get 'search' => 'articles#search', as: 'search'
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
