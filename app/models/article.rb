@@ -48,4 +48,15 @@ class Article < ApplicationRecord
     end
   end
 
+  def self.sort(sort)
+    case sort
+    when 'new'
+      return all.order(created_at: :DESC)
+    when 'old'
+      return all.order(created_at: :ASC)
+    when 'likes'
+      return find(Favorite.group(:article_id).order(Arel.sql('count(article_id) desc')).pluck(:article_id))
+    end
+  end
+
 end

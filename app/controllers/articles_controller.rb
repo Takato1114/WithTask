@@ -57,7 +57,15 @@ class ArticlesController < ApplicationController
   end
 
   def search
-    @articles = Article.search(params[:search])
+    # ワード検索の場合
+    if params[:search].present?
+      @articles = Article.search(params[:search])
+    # 並び替えの場合
+    elsif params[:sort].present?
+      @articles = Article.sort(params[:sort])
+    end
+    @tag_list = Tag.all
+    render 'index'
   end
 
   private
