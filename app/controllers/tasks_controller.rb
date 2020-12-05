@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-       redirect_to task_path(@task.id) ,notice: "successfully updated."
+       redirect_to tasks_path
     else
     render :edit
     end
@@ -41,9 +41,9 @@ class TasksController < ApplicationController
   def update_status
     @task = Task.find(params[:task_id])
     if @task.update(task_params)
-       redirect_to tasks_path ,notice: "successfully updated."
+       redirect_to tasks_path
     else
-    render :index
+    render 'index'
     end
 
   end
@@ -56,7 +56,7 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:task_name, :task_summary, :deadline, :scheduled_time, :status, :row_order_position)
+      params.require(:task).permit(:title, :content, :start_date, :end_date, :status, :user_id, :row_order_position)
     end
 
 end

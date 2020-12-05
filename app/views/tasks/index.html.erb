@@ -1,17 +1,56 @@
 <h1>Task Menu</h1>
+<div id="calendar"></div>
+<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-nm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">スケジュール登録</h4>
+                    </div>
+                    <div class="modal-body">
+                        <%= form_with model:@task, url: tasks_path do |f| %>
+                            <div  class="col">
+                                    <p>
+                                        <span>タイトル</span>
+                                        <span><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください" %></span>
+                                    </p>
+                                    <span>開始日時</span>
+                                    <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+                                    <span>終了日時</span>
+                                    <span><%= f.datetime_field :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+                                    <span>詳細
+                                    <%= f.text_field :content, class: "form-control", placeholder: "タイトルの詳細を記入してください" %></span>
+                                    <span>ステータス
+                                    <%= f.select :status, Task.statuses.keys %>
+                                    </span>
+                            </div>
+                            <div class="modal-footer">
+                                <%= f.submit "登録する", class: "btn btn-primary" %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= render 'tasks/edit', tasks: @tasks %>
     <%= form_with model:@task, method: :post, local:true do |f| %>
     <table class ="table">
       <tr>
         <td><%= f.label :タスク名 %></td>
-        <td><%= f.text_field :task_name, autofocus: true %></td>
+        <td><%= f.text_field :title, autofocus: true %></td>
       </tr>
       <tr>
         <td><%= f.label :タスク概要 %></td>
-        <td><%= f.text_area :task_summary %></td>
+        <td><%= f.text_area :content %></td>
       </tr>
       <tr>
-        <td><%= f.label :締め切り日 %></td>
-        <td><%= f.date_field :deadline %></td>
+        <td><%= f.label :開始日 %></td>
+        <td><%= f.datetime_field :start_date %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :終了日 %></td>
+        <td><%= f.datetime_field :end_date %></td>
       </tr>
       <tr>
         <td><%= f.label :ステータス %></td>
@@ -36,18 +75,8 @@
       <body>
       <% @tasks.each do |task| %>
         <%= content_tag "tr", class: "item", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
-        <td><%= task.task_name %></td>
-        <td>
-          <% today = Date.today
-             diff  = task.deadline - today %>
-        <% if diff.to_i <= 0 %>
-        <p class="red-text"><%= task.deadline %></p>
-        <% elsif diff.to_i <= 3 %>
-        <p class="yellow-text"><%= task.deadline %></p>
-        <% else %>
-        <p class="test-color"><%= task.deadline %></p>
-        <% end %>
-        </td>
+        <td><%= task.title %></td>
+
         <td>
           <%= form_with model:task, url: task_update_status_path(task_id: task.id), method: :patch, local:true, data: {"turbolinks" => false} do |f| %>
           <%= f.select :status, Task.statuses.keys %>

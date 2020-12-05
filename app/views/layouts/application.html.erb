@@ -7,9 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href='fullcalendar/core/main.css' rel='stylesheet' />
+    <link href='fullcalendar/daygrid/main.css' rel='stylesheet' />
+    <link href='calendar.css' rel='stylesheet' />
+
   </head>
 
-  <body>
+  <body data-turbolinks="false">
     <%= render 'layouts/header' %>
     <%= yield %>
     <%= render 'layouts/footer' %>
