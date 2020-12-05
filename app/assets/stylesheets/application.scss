@@ -12,7 +12,15 @@
  *
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "font-awesome";
+
+td.fc-sat {
+    background-color: #eaf4ff;
+}
+td.fc-sun {
+    background-color: #ffeaea;
+}

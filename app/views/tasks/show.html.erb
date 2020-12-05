@@ -3,23 +3,19 @@
 <table class ="table">
   <tr>
     <td>タスク名</td>
-    <td><%= @task.task_name %></td>
+    <td><%= @task.title %></td>
   </tr>
   <tr>
     <td>タスク概要</td>
-    <td><%= @task.task_summary %></td>
+    <td><%= @task.content %></td>
   </tr>
   <tr>
-    <td>締め切り日</td>
-    <td><%= @task.deadline %></td>
+    <td>開始日</td>
+    <td><%= @task.start_date %></td>
   </tr>
   <tr>
-    <td>予定時間</td>
-    <td><% @task.scheduled_time %></td>
-  </tr>
-  <tr>
-    <td>実績時間</td>
-    <td><%= @task.actual_time %></td>
+    <td>終了日</td>
+    <td><% @task.end_date %></td>
   </tr>
   <tr>
     <td>ステータス</td>
