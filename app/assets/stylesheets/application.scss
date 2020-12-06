@@ -18,9 +18,25 @@
  @import "bootstrap";
  @import "font-awesome";
 
+body{
+    padding-top:50px;
+}
+
 td.fc-sat {
     background-color: #eaf4ff;
 }
 td.fc-sun {
     background-color: #ffeaea;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15%;
+    align-items: center;
+    width: 100%;
+    z-index: 500;
+    top: 0;
+    position: fixed;
+    background-color: rgba(255,255,255,0.8);
 }

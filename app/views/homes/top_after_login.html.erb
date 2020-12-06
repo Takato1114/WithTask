@@ -1,5 +1,42 @@
-<h1>Homes#top_after_login</h1>
-<p>Find me in app/views/homes/top_after_login.html.erb</p>
+<h1>WithTaskへようこそ！</h1>
+
+<div class="row">
+    <div id="calendar"></div>
+  </div>
+    <div id="inputScheduleForm" class="modal fade" tabindex="-1">
+            <div class="modal-dialog modal-nm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">スケジュール登録</h4>
+                    </div>
+                    <div class="modal-body">
+                        <%= form_with model:@task, url: tasks_path do |f| %>
+                            <div  class="col">
+                                    <p>
+                                        <span>タイトル</span>
+                                        <span><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください" %></span>
+                                    </p>
+                                    <span>開始日時</span>
+                                    <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+                                    <span>終了日時</span>
+                                    <span><%= f.datetime_field :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+                                    <span>詳細
+                                    <%= f.text_field :content, class: "form-control", placeholder: "タイトルの詳細を記入してください" %></span>
+                                    <span>ステータス
+                                    <%= f.select :status, Task.statuses.keys %>
+                                    </span>
+                            </div>
+                            <div class="modal-footer">
+                                <%= f.submit "登録する", class: "btn btn-primary" %>
+                                <%= f.hidden_field :user_id, :value => current_user.id %>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%= render 'tasks/edit', tasks: @tasks %>
 
 <div class="button"><%= link_to " タスク管理メニューへ ", tasks_path, class:"btn btn-default btn-lg", data: {"turbolinks" => false} %></div>
 <div class="button"><%= link_to " 記事一覧へ ", articles_path, class:"btn btn-default btn-lg", data: {"turbolinks" => false} %></div>
