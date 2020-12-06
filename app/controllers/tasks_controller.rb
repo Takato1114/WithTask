@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.user_id = current_user.id
     if @task.save(task_params)
-      redirect_to tasks_path
+      redirect_to homes_top_path
     else
       render 'index'
     end
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-       redirect_to tasks_path
+       redirect_to homes_top_path
     else
     render :edit
     end
