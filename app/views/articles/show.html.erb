@@ -1,47 +1,18 @@
 <h2>記事詳細</h2>
 
-<% unless @article.tags.blank? %>
-  <ul>
-    <% @article.tags.each do |tag| %>
-      <li>
-        <%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<h2 style="display:inline;"><%= @article.title %></h2>
+<span id ="favorite-btn_<%= @article.id %>">
+	<%= render partial: 'favorites/favorite-btn', locals: { article: @article} %>　コメント数<%= @article.article_comments.count %>件
+</span><br>
+投稿者：<%= @article.user.nickname %>　更新日時：<%= @article.updated_at %>
 
-<table class ="table">
-  <tr>
-    <td>タイトル</td>
-    <td><%= @article.title %></td>
-  </tr>
-  <tr>
-    <td>説明欄</td>
-    <td><%= @article.explanation %></td>
-  </tr>
-  <tr>
-    <td>タグ</td>
-    <td><% @article_tags.each do |tag| %>
-          <p>#<%= tag.tag_name %></p>
-        <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>参考URL</td>
-    <td><%= @article.reference_url %></td>
-  </tr>
-  <tr>
-    <td>いいね数</td>
-    <!--非同期通信-->
-    <td id ="favorite-btn_<%= @article.id %>">
-			<%= render partial: 'favorites/favorite-btn', locals: { article: @article} %>
-		</td>
-  </tr>
-  <tr>
-    <td>コメント数</td>
-    <td><%= @article.article_comments.count %>件</td>
-  </tr>
-</table>
+<% @article_tags.each do |tag| %>
+  <p>#<%= tag.tag_name %></p>
+<% end %>
+<div class="explanation-box">
+  <h4><%= @article.explanation %></h4>
+</div>
+  
 <div class ="comment">
 	<%= render partial: 'article_comments/comment', locals: { article: @article, article_comment: @article_comment} %>
 </div>

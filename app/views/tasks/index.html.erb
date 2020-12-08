@@ -1,48 +1,32 @@
 <h1>Task Menu</h1>
-  
-    <%= form_with model:@task, method: :post, local:true do |f| %>
-    <table class ="table">
-      <tr>
-        <td><%= f.label :タスク名 %></td>
-        <td><%= f.text_field :title, autofocus: true %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :タスク概要 %></td>
-        <td><%= f.text_area :content %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :開始日 %></td>
-        <td><%= f.datetime_field :start_date %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :終了日 %></td>
-        <td><%= f.datetime_field :end_date %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :ステータス %></td>
-        <td><%= f.select :status, Task.statuses.keys %></td>
-      </tr>
-    </table>
-    <div class="actions">
-      <%= f.submit "タスク作成" %>
-    </div>
+    <h2>本日のタスク</h2>
+    <%= form_with url: tasks_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit '検索', name: nil %>
     <% end %>
 
-    <h2>タスク一覧</h2>
+    <%= form_with url: tasks_search_path, method: :get, local: true do |f| %>
+      <%= f.select :sort, [ '選択してください',
+                            ['ToDo', 'todo'],
+                            ['Done', 'done'],
+                          ] %>
+      <%= f.submit '絞り込む', name: nil %>
+    <% end %>
     <table class ="table table-sortable">
       <thead>
         <tr>
         <th>タスク名</th>
-        <th>締め切り日</th>
+        <th>開始日時</th>
+        <th>終了日時</th>
         <th>ステータス</th>
-        <th colspan="3"></th>
         </tr>
       </thead>
       <body>
       <% @tasks.each do |task| %>
-        <%= content_tag "tr", class: "item", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
+        <%= content_tag "tr", class: "item success", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
         <td><%= task.title %></td>
-
+        <td><%= task.start_date %></td>
+        <td><%= task.end_date %></td>
         <td>
           <%= form_with model:task, url: task_update_status_path(task_id: task.id), method: :patch, local:true, data: {"turbolinks" => false} do |f| %>
           <%= f.select :status, Task.statuses.keys %>

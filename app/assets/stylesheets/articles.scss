@@ -1,3 +1,62 @@
 // Place all the styles related to the articles controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#nav-tag{
+  list-style: none;
+  overflow: hidden;
+}
+
+#nav-tag-li{
+  float: left;
+}
+
+.article-search-position{
+  margin-bottom :20px;
+}
+
+.article-sort-position{
+  float: right;
+  margin-bottom :10px;
+}
+.article-box{
+border-bottom: dotted 3px orange;
+}
+
+.article_title{
+  margin: 0;
+  padding: 0;
+}
+
+.tag_name{
+  margin: 0;
+  padding: 0;
+}
+
+.favorite-comment{
+  margin: 0;
+  padding: 0;
+}
+
+.article_comment_count{
+  margin: 0;
+  padding: 0;
+}
+
+.comment-box{
+  border-bottom: solid 2px #C0C0C0;
+  margin-bottom: 5px;
+}
+
+.comment_position{
+  position: relative;
+  margin: 10px 0;
+  position: relative;
+}
+
+#comment_destroy_positon{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+}

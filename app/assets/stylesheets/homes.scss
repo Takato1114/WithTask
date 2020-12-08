@@ -1,3 +1,84 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-box{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  border: double 5px #4ec4d3;
+}
+
+.withtask-description{
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  color: #232323;
+  background: #fff8e8;
+  border-left: solid 10px #ffc06e;
+}
+
+h1 {
+  border-bottom: solid 3px skyblue;
+  position: relative;
+}
+
+h1:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px #ffc778;
+  bottom: -3px;
+  width: 30%;
+}
+
+.btn-position{
+  margin: 60px 0;
+}
+
+.signup-btn-stitch {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #33FFCC;
+  color: #FFE;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 5px #33FFCC;
+  border: dashed 1px #FFF;
+}
+
+.signup-btn-stitch:hover {
+  border: dotted 1px #FFF;
+}
+
+.login-btn-stitch {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;
+  color: #FFE;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 5px #668ad8;
+  border: dashed 1px #FFF;
+}
+
+.login-btn-stitch:hover {
+  border: dotted 1px #FFF;
+}
+
+.guest-btn-stitch {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #FFCC99;
+  color: #FFE;
+  border-radius: 4px;
+  box-shadow: 0px 0px 0px 5px #FFCC99;
+  border: dashed 1px #FFF;
+}
+
+.guest-btn-stitch:hover {
+  border: dotted 1px #FFF;
+}
+
+.allbtn-position{
+  text-align: center;
+}

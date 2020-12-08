@@ -1,20 +1,21 @@
 <h1>投稿記事一覧</h1>
 <% unless @tag_list.blank? %>
-  <ul>
+  <ul id ="nav-tag">
     <% @tag_list.each do |tag| %>
-      <li>
-        <%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>
+      <li id="nav-tag-li">
+        #<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>　
       </li>
     <% end %>
   </ul>
 <% end %>
-
-<%= form_with url: search_path, method: :get, local: true do |f| %>
+<div class ="article-search-position">
+<%= form_with url: articles_search_path, method: :get, local: true do |f| %>
   <%= f.text_field :search %>
   <%= f.submit '検索', name: nil %>
 <% end %>
-
-<%= form_with url: search_path, method: :get, local: true do |f| %>
+</div>
+<div class ="article-sort-position">
+<%= form_with url: articles_search_path, method: :get, local: true do |f| %>
   <%= f.select :sort, [ '並び順を選択してください',
                         ['投稿が新しい順', 'new'],
                         ['投稿が古い順', 'old'],
@@ -22,6 +23,21 @@
                       ] %>
   <%= f.submit '並び替え', name: nil %>
 <% end %>
+</div>
+
+<% @articles.each do |article| %>
+<div class ="article-box">
+  <h2 class ="article_title"><%= link_to article.title, article_path(article) %>
+    </h2>
+  <% article.tags.each do |tag| %>
+    #<span class ="tag_name"><%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
+  <% end %><br>
+  <span id ="favorite-btn_<%= article.id %>" class="favorite-comment">
+    <%= render partial: 'favorites/favorite-btn', locals: { article: article} %></span>
+    <span>コメント数：<%= article.article_comments.count %>件</span>
+</div>
+<% end %>
+
 
 
 

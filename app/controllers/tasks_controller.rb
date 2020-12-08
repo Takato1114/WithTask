@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
   def index
     @task = Task.new
-    @tasks = Task.where(user_id: current_user.id).rank(:row_order)
+    @tasks = Task.where(user_id: current_user.id).where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).rank(:row_order)
+
+    # @tasks = Task.where(user_id: current_user.id).rank(:row_order)
   end
 
   def create
@@ -45,7 +47,17 @@ class TasksController < ApplicationController
     else
     render 'index'
     end
+  end
 
+  def search
+    # ワード検索の場合
+    if params[:search].present?
+      @tasks = Task.search(params[:search])
+    # 並び替えの場合
+    elsif params[:sort].present?
+      @tasks = Task.sort(params[:sort])
+    end
+    render 'index'
   end
 
   def sort
