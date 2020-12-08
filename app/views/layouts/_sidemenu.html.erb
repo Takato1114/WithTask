@@ -1,0 +1,27 @@
+<div id ="sidemenu">
+  <nav id="nav-container">
+    <ui class="nav-contents">
+      <li class="nav-menu">MENU</li>
+      <li class="nav-li">
+        <%= link_to homes_top_path do %>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　ホームへ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to tasks_path , data: {"turbolinks" => false} do %>
+          <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　タスクページへ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to articles_path , data: {"turbolinks" => false} do %>
+          <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　記事一覧へ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to user_path(current_user.id) do %>
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　マイページへ
+        <% end %>
+      </li>
+    </ui>
+  </nav>
+</div>

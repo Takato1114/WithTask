@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     resources :article_comments, only: [:create, :destroy]
   end
 
-  get 'search' => 'articles#search', as: 'search'
+  get 'task/search' => 'tasks#search', as: 'tasks_search'
+  get 'article/search' => 'articles#search', as: 'articles_search'
+
 
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
