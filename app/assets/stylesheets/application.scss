@@ -35,7 +35,7 @@ td.fc-sun {
 #header {
     display: flex;
     justify-content: space-between;
-    padding: 0 15%;
+    padding: 0;
     align-items: center;
     width: 100%;
     z-index: 500;
@@ -120,4 +120,9 @@ td.fc-sun {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+
+// ロゴ
+.logo_image {
+  height: 80px;
 }

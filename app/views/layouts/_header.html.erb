@@ -5,13 +5,17 @@
       <!--<nav class="navbar navbar-inverse" role="navigation" id="slide-nav">-->
         <!--<div class="container relative">-->
           <!--<div class="navbar-header navbar-left">-->
-            <h3 font color="#ffffff">
-            WithTask</font>
-            </h3>
+
           <!--</div>-->
+          <% if user_signed_in? %>
+              <div class="nav navbar-header navbar-left" style="display: inline-block;">
+                <div id="head-logo">
+                  <%= link_to image_tag('withtask_logo.png', class:"logo_image"), 'root' %>
+                </div>
+              </div>
           <div id="menu">
+
             <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
-              <% if user_signed_in? %>
                 <li class="">
                   <%= link_to homes_top_path do %>
                   <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　ホームへ
@@ -34,6 +38,7 @@
                 </li>
 
               <% else %>
+              <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
                 <li class="">
                   <%= link_to root_path do %>
                   <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　トップページへ
