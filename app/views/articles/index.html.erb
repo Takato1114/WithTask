@@ -3,7 +3,7 @@
   <ul id ="nav-tag">
     <% @tag_list.each do |tag| %>
       <li id="nav-tag-li">
-        #<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>　
+        #<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>
       </li>
     <% end %>
   </ul>
@@ -27,8 +27,7 @@
 
 <% @articles.each do |article| %>
 <div class ="article-box">
-  <h2 class ="article_title"><%= link_to article.title, article_path(article) %>
-    </h2>
+  <h2 class ="article_title"><%= link_to article.title, article_path(article) %></h2>投稿者：<%= article.user.nickname %>　更新日時：<%= article.updated_at.strftime("%Y年%m月%d日") %><br>
   <% article.tags.each do |tag| %>
     #<span class ="tag_name"><%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
   <% end %><br>
@@ -37,34 +36,3 @@
     <span>コメント数：<%= article.article_comments.count %>件</span>
 </div>
 <% end %>
-
-
-
-
-<table class ="table table-sortable">
-    <thead>
-      <tr>
-      <th>タイトル</th>
-      <th>タグ</th>
-      <th>作成者</th>
-      <th>いいね数</th>
-      <th>コメント数</th>
-      </tr>
-    </thead>
-    <body>
-    <% @articles.each do |article| %>
-      <tr>
-      <td><%= article.title %></td>
-      <td><% article.tags.each do |tag| %>
-            <p>#<%= tag.tag_name %></p>
-          <% end %>
-      </td>
-      <td><%= article.user.nickname %></td>
-      <td id ="favorite-btn_<%= article.id %>">
-			  <%= render partial: 'favorites/favorite-btn', locals: { article: article} %>
-		  </td>
-			<td><%= article.article_comments.count %>件</td>
-      <td><%= link_to "記事詳細へ", article_path(article)%></td>
-    <% end %>
-    </body>
-</table>

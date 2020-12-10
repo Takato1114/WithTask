@@ -22,8 +22,10 @@ class ArticlesController < ApplicationController
     if @article.save(article_params)
       tag_list = params[:article][:tag_name].split(/[[:blank:]]+/).select(&:present?)
        @article.save_tags(tag_list)
+       flash[:success] = "記事の投稿が完了しました。"
       redirect_to article_path(@article.id)
     else
+      flash[:danger] = "記事の更新に失敗しました。"
       render 'new'
     end
   end
@@ -37,6 +39,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
+    flash[:success] = "記事の削除が完了しました。"
     redirect_to articles_path
   end
 
@@ -50,8 +53,10 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       tag_list = params[:article][:tag_name].split(/[[:blank:]]+/).select(&:present?)
        @article.save_tags(tag_list)
-      redirect_to article_path(@article.id) ,notice: "successfully updated."
+       flash[:success] = "記事の更新が完了しました。"
+      redirect_to article_path(@article.id)
     else
+      flash[:danger] = "記事の更新に失敗しました。"
     render :edit
     end
   end

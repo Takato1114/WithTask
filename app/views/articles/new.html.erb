@@ -3,23 +3,20 @@
 <%= form_with model:@article, method: :post, local:true do |f| %>
   <div class="field">
     <%= f.label :タイトル %><br />
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :説明欄 %><br />
-    <%= f.text_area :explanation %>
+    <%= f.text_field :title, size:"60x1" %>
   </div>
 
   <div class="field">
     <%= f.label :tag_name, "タグ" %><br />
-    <%= f.text_field :tag_name %>
+    <%= f.text_field :tag_name, size:"60x1", placeholder: "半角スペーズでタグを区切ることができます。(例:ruby rails)" %>
   </div>
 
   <div class="field">
-    <%= f.label :参考URL %><br />
-    <%= f.text_field :reference_url %>
+    <%= f.label :説明欄 %><br />
+    <%= f.text_area :explanation, size:"60x10" %>
   </div>
+
+
 
   <%= f.hidden_field :task_id, :value => @task.id %>
 

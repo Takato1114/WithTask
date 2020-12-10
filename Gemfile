@@ -82,3 +82,5 @@ gem 'font-awesome-rails'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+gem 'rails-i18n'

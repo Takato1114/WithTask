@@ -1,26 +1,28 @@
-<h2>記事詳細</h2>
+<h1>記事詳細</h1>
 
 <h2 style="display:inline;"><%= @article.title %></h2>
 <span id ="favorite-btn_<%= @article.id %>">
 	<%= render partial: 'favorites/favorite-btn', locals: { article: @article} %>　コメント数<%= @article.article_comments.count %>件
 </span><br>
-投稿者：<%= @article.user.nickname %>　更新日時：<%= @article.updated_at %>
+投稿者：<%= @article.user.nickname %>　更新日時：<%= @article.updated_at.strftime("%Y年%m月%d日") %>
 
 <% @article_tags.each do |tag| %>
   <p>#<%= tag.tag_name %></p>
 <% end %>
 <div class="explanation-box">
-  <h4><%= @article.explanation %></h4>
+  <h4><%= safe_join(@article.explanation.split("\n"),tag(:br)) %></h4>
 </div>
-  
+
 <div class ="comment">
 	<%= render partial: 'article_comments/comment', locals: { article: @article, article_comment: @article_comment} %>
 </div>
+
     <%= form_with model:[@article,@article_comment] do |f| %>
-      <%= f.text_area :comment, size:"90x5" %>
+      <%= f.text_area :comment, size:"60x3", placeholder: "コメントはこちらへ記入してください。" %>
       <%= f.submit '送信'%>
     <% end %>
 
-
-<%= link_to '記事編集へ', edit_article_path(@article.id), class:"btn btn-primary" %>
-<%= link_to '記事を削除する', article_path(@article.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
+<% if @article.user_id == current_user.id %>
+  <%= link_to '記事編集へ', edit_article_path(@article.id), class:"btn btn-primary" %>
+  <%= link_to '記事を削除する', article_path(@article.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
+<% end %>

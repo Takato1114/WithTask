@@ -20,6 +20,7 @@
 
 body{
     padding-top:70px;
+    background-color: #f9f9f9;
 }
 
 p { line-height: 1.7 }
@@ -68,4 +69,55 @@ td.fc-sun {
 #calendar{
   width: 90%;
   margin: 0 auto;
+}
+
+// エラーメッセージの表示
+
+.alert ul {
+  list-style: none;
+}
+
+.alert-position{
+  margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color:#262626;
+  background:#FFEBE8;
+  text-align: left;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+  width: 400px;
+}
+
+// 更新ボタン
+.update-button{
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #1a1aff;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 0.5em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #1a1aff;    /* 枠の指定 */
+}
+
+.update-button:hover{
+  color         : #1a1aff;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}
+
+// devise機能のフラッシュメッセージ
+.alert-notice{
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+
+.alert-alert{
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
 }

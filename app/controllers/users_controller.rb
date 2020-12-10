@@ -9,8 +9,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-       redirect_to user_path(current_user.id) ,notice: "successfully updated."
+      flash[:success] = "ユーザー情報を更新しました。"
+       redirect_to user_path(current_user.id)
     else
+      flash[:danger] = "ユーザー情報の更新に失敗しました。"
     render :edit
     end
   end
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     @user.update(quit_flag: true)
     reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
     redirect_to root_path
   end
 
