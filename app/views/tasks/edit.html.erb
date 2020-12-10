@@ -4,15 +4,19 @@
   <table class ="table">
       <tr>
         <td><%= f.label :タスク名 %></td>
-        <td><%= f.text_field :task_name, autofocus: true %></td>
+        <td><%= f.text_field :title, autofocus: true %></td>
       </tr>
       <tr>
         <td><%= f.label :タスク概要 %></td>
-        <td><%= f.text_area :task_summary %></td>
+        <td><%= f.text_area :content %></td>
       </tr>
       <tr>
-        <td><%= f.label :締め切り日 %></td>
-        <td><%= f.date_field :deadline %></td>
+        <td><%= f.label :開始日時 %></td>
+        <td><%= f.datetime_field :start_date %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :開始日時 %></td>
+        <td><%= f.datetime_field :end_date %></td>
       </tr>
       <tr>
         <td><%= f.label :ステータス %></td>
@@ -20,6 +24,6 @@
       </tr>
     </table>
     <div class="actions">
-      <%= f.submit "タスクを編集する" %>
+      <%= f.submit "タスクを編集する", class:"btn btn-primary" %>
     </div>
     <% end %>

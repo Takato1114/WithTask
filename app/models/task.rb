@@ -1,9 +1,13 @@
 class Task < ApplicationRecord
 
+  validates :title, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+
   belongs_to :user
   has_many :articles
 
-  enum status: {Todo: 0, Doing: 1, Done: 2}
+  enum status: {Todo: 0, Done: 1}
 
   include RankedModel
   ranks :row_order
@@ -21,7 +25,7 @@ class Task < ApplicationRecord
     when 'todo'
       return Task.where(status: 0).rank(:row_order)
     when 'done'
-      return Task.where(status: 2).rank(:row_order)
+      return Task.where(status: 1).rank(:row_order)
     end
   end
 

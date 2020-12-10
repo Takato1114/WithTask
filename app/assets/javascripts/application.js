@@ -78,7 +78,6 @@ $(function () {
                 },
                 // 日付クリック
                 dayClick : function ( date , jsEvent , view ) {
-                
                 $('#inputScheduleForm').modal('show');
                 },
                 // event クリックで編集、削除

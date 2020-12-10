@@ -17,15 +17,18 @@
 
 .article-sort-position{
   float: right;
-  margin-bottom :10px;
+  margin-bottom: 10px;
 }
+
 .article-box{
-border-bottom: dotted 3px orange;
+  border-bottom: dotted 3px #0066CC;
+  padding: 10px;
 }
 
 .article_title{
   margin: 0;
   padding: 0;
+  display: inline;
 }
 
 .tag_name{

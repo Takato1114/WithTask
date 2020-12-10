@@ -26,6 +26,7 @@
                             <div class="modal-footer">
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
                                 <%= f.submit "編集する", class: "btn btn-primary" %>
+                                <%= link_to 'タスクを削除する', task_path(task.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
                             </div>
                         <% end %>
