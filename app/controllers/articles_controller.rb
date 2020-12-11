@@ -1,7 +1,6 @@
 class ArticlesController < ApplicationController
   def new
     @article = Article.new
-    @task = Task.find(params[:task_id])
     # @article.task_id = params[:task_id]
   end
 
@@ -25,7 +24,7 @@ class ArticlesController < ApplicationController
        flash[:success] = "記事の投稿が完了しました。"
       redirect_to article_path(@article.id)
     else
-      flash[:danger] = "記事の更新に失敗しました。"
+      flash[:danger] = "記事の登録に失敗しました。"
       render 'new'
     end
   end
@@ -38,6 +37,10 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    # byebug
+    @article.tags.each do |tag|
+      Tag.find_by(id: tag.id).destroy
+    end
     @article.destroy
     flash[:success] = "記事の削除が完了しました。"
     redirect_to articles_path
@@ -75,7 +78,7 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :explanation, :reference_url, :task_id)
+      params.require(:article).permit(:title, :explanation, :reference_url)
     end
 
     def tag_params

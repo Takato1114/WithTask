@@ -15,10 +15,9 @@
   </head>
 
   <body data-turbolinks="false">
-    <%= render 'layouts/header' %>
-    <%= render 'layouts/flash' %>
+  <%= render 'layouts/header' %>
     <div class="container">
-
+      <%= render 'layouts/flash' %>
         <% if user_signed_in? %>
           <div class="col-lg-2">
             <%= render 'layouts/sidemenu' %>
@@ -27,7 +26,6 @@
             <%= yield %>
           </div>
         <% else %>
-          
           <%= yield %>
         <% end %>
       </div>

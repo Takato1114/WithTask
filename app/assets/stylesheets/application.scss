@@ -18,6 +18,10 @@
  @import "bootstrap";
  @import "font-awesome";
 
+html, body {
+  font-family: 'Noto Sans JP', sans-serif;;
+}
+
 body{
     padding-top:70px;
     background-color: #f9f9f9;
@@ -33,7 +37,7 @@ td.fc-sun {
 }
 
 #header {
-    display: flex;
+    // display: flex;
     justify-content: space-between;
     padding: 0 15%;
     align-items: center;
@@ -43,6 +47,8 @@ td.fc-sun {
     position: fixed;
     background-color: rgba(255,255,255,0.8);
 }
+
+
 
 // サイドメニュー
 #sidebar {
@@ -78,7 +84,6 @@ td.fc-sun {
 }
 
 .alert-position{
-  margin: auto;
   margin-top: 15px;
   margin-bottom: 15px;
   color:#262626;
@@ -120,4 +125,47 @@ td.fc-sun {
   background-color: #f2dede;
   border-color: #ebccd1;
   color: #a94442;
+}
+
+// フォームの枠
+.field{
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.registration-btn {
+    width: 300px;
+    padding: 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+}
+
+.guest {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-style: oblique;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.login {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-style: oblique;
+  padding: 10px;
+}
+
+.signup {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-style: oblique;
+  padding: 10px;
+}
+
+.login-btn {
+    width: 300px;
+    padding: 10px;
+    border: solid 1px #ccc;
+    border-radius: 5px;
 }

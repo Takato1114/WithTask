@@ -41,8 +41,9 @@ class TasksController < ApplicationController
       flash[:success] = "タスクの更新が完了しました。"
        redirect_to homes_top_path
     else
-      flash[:success] = "タスクの更新に失敗しました。"
-    render :edit
+      flash[:danger] = "タスクの更新に失敗しました。※タイトル・開始日時・終了日時は必須です。"
+      @tasks = Task.where(user_id: current_user.id)
+      redirect_to homes_top_path
     end
   end
 

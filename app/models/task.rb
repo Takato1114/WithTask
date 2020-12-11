@@ -5,7 +5,6 @@ class Task < ApplicationRecord
   validates :end_date, presence: true
 
   belongs_to :user
-  has_many :articles
 
   enum status: {Todo: 0, Done: 1}
 
