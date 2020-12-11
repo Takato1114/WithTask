@@ -1,5 +1,12 @@
 class UsersController < ApplicationController
+
+  def mypage
+    @articles = Article.where(user_id: current_user.id)
+  end
+
   def show
+    @user = User.find_by(id: params[:id])
+    @articles = Article.where(user_id: params[:id])
   end
 
   def edit
@@ -10,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     if @user.update(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
-       redirect_to user_path(current_user.id)
+       redirect_to users_mypage_path
     else
       flash[:danger] = "ユーザー情報の更新に失敗しました。"
     render :edit

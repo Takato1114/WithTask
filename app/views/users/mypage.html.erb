@@ -1,5 +1,8 @@
-<h1><%= @user.nickname %>さんの投稿記事一覧</h1>
+<h1><%= current_user.nickname %>さんのマイページです</h1>
 
+<%= link_to 'プロフィール編集画面へ', edit_user_path(current_user.id), class: "profile" %>
+
+<h2>投稿記事一覧</h2>
 <% @articles.each do |article| %>
 <div class ="article-box">
   <div class ="article-box1">
@@ -14,3 +17,4 @@
     <span>コメント数：<%= article.article_comments.count %>件</span>
 </div>
 <% end %>
+

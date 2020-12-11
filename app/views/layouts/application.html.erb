@@ -15,21 +15,22 @@
   </head>
 
   <body data-turbolinks="false">
+    <div class="fix-wrapper">
   <%= render 'layouts/header' %>
     <div class="container">
       <%= render 'layouts/flash' %>
         <% if user_signed_in? %>
-          <div class="col-lg-2">
+          <div class="col-lg-3">
             <%= render 'layouts/sidemenu' %>
           </div>
-          <div class="col-lg-10">
+          <div class="col-lg-9">
             <%= yield %>
           </div>
         <% else %>
           <%= yield %>
         <% end %>
       </div>
-    </div>
     <%= render 'layouts/footer' %>
+    </div>
   </body>
 </html>

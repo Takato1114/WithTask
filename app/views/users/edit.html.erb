@@ -1,17 +1,20 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-ユーザ情報編集ページです。
+<h1>ユーザー編集画面</h1>
 <%= form_with url: user_path, model:@user, local: true do |f| %>
   <div class="field">
     <%= f.label :ニックネーム %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", class: "user-edit" %>
   </div>
-
   <div class="field">
     <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "user-edit" %>
   </div>
-<%= f.submit "　編集内容を保存する　", class:"btn btn-info" %>
-<%= link_to "　退会する　", users_unsubscribe_path, class:"btn btn-danger pull-right btn-lg" %>
+  <div class="actions field">
+    <%= f.submit "　編集内容を保存する　", class:"user-edit" %>
+  </div>
 <% end %>
+
+<%= link_to 'パスワードを変更する', edit_user_registration_path, class:"password-edit" %><br>
+<%= link_to "退会する場合はこちらをクリック", users_unsubscribe_path, class:"unsubscribe" %>
+
+
 
