@@ -169,3 +169,22 @@ td.fc-sun {
     border: solid 1px #ccc;
     border-radius: 5px;
 }
+
+.fix-wrapper{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #CCFFFF;
+  border-color: #E2D8C9;
+  font-size: 20px;
+  text-align: center;
+  line-height: 130px;
+  font-family: 'Hannotate TC', 'Avenir', YuGothic, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}

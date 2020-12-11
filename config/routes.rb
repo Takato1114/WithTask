@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/' => 'homes#top_before_login'
   get '/homes/top' => 'homes#top_after_login'
   get '/homes/about' => 'homes#about'
+  get '/users/mypage' => 'users#mypage'
   get '/users/unsubscribe' => 'users#unsubscribe'
   patch '/users/quit' => 'users#quit_update'
   resources :users, only: [:show, :edit, :update]
