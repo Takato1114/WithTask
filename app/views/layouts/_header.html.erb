@@ -1,16 +1,27 @@
-<header>
-  <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header" id="header">
+<header class="navbar navbar-default navbar-fixed-top" id="header">
+  <!--<nav class="navbar navbar-default navbar-fixed-top">-->
+  <div class="container">
+    <!--<div id="header">-->
       <!--<nav class="navbar navbar-inverse" role="navigation" id="slide-nav">-->
         <!--<div class="container relative">-->
           <!--<div class="navbar-header navbar-left">-->
-            <h3 font color="#ffffff">
+                      <!-- 追記ここから-->
+  <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- 追記ここまで-->
+            <h2 style="display:inline;" font color="#ffffff">
             WithTask</font>
-            </h3>
+            </h2>
+
+            </div>
           <!--</div>-->
-          <div id="menu">
-            <ul class="nav navbar-nav navbar-right" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+          <nav>
+            <ul id="navbar" class="nav navbar-nav navbar-right navbar-collapse collapse">
               <% if user_signed_in? %>
                 <li class="">
                   <%= link_to homes_top_path do %>
@@ -18,13 +29,8 @@
                   <% end %>
                 </li>
                 <li class="">
-                  <%= link_to user_path(current_user.id) do %>
-                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　マイページへ
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to tasks_path , data: {"turbolinks" => false} do %>
-                  <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　タスクページへ
+                  <%= link_to homes_about_path do %>
+                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span>　WithTaskとは
                   <% end %>
                 </li>
                 <li class="">
@@ -40,11 +46,6 @@
                   <% end %>
                 </li>
                 <li class="">
-                  <%= link_to homes_about_path do %>
-                  <span class="glyphicon glyphicon-link" aria-hidden="true"></span>　WithTaskとは
-                  <% end %>
-                </li>
-                <li class="">
                   <%= link_to new_user_registration_path do %>
                   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>　新規登録へ
                   <% end %>
@@ -56,8 +57,8 @@
                 </li>
               <% end %>
             </ul>
-          </div>
+          </nav>
+        <!--</div>-->
         </div>
-        </div>
-        </nav>
+      <!--</nav>-->
     </header>

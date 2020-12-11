@@ -12,17 +12,24 @@
 }
 
 .article-search-position{
-  margin-bottom :20px;
+  margin-bottom :30px;
 }
 
 .article-sort-position{
   float: right;
-  margin-bottom: 10px;
 }
 
 .article-box{
-  border-bottom: dotted 3px #0066CC;
+  border-top: 1px solid rgba(0,0,0,0.12);
   padding: 10px;
+}
+
+.article-box1{
+  margin: 10px;
+}
+
+.article-box2{
+  margin-left: 5px;
 }
 
 .article_title{
@@ -32,12 +39,12 @@
 }
 
 .tag_name{
-  margin: 0;
+  margin-left: 5px;
   padding: 0;
 }
 
 .favorite-comment{
-  margin: 0;
+  margin-left: 5px;
   padding: 0;
 }
 
@@ -47,9 +54,25 @@
 }
 
 .comment-box{
-  border-bottom: solid 2px #C0C0C0;
+  border-top: 1px solid #C0C0C0;
   margin-bottom: 5px;
 }
+
+.comment_user_position{
+  display: table;
+  width: 100%;
+}
+
+.comment_user{
+  display: table-cell;
+  text-align: left;
+}
+
+.comment_created{
+  display: table-cell;
+  text-align: right;
+}
+
 
 .comment_position{
   position: relative;
@@ -61,5 +84,8 @@
   position: absolute;
   right: 0;
   bottom: 0;
+}
 
+.comment-show{
+  margin-top: 50px;
 }

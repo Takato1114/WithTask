@@ -1,4 +1,6 @@
-<h2>Sign up</h2>
+<h1>ユーザー新規登録</h1>
+
+<%= link_to 'ゲストログイン（閲覧用）はこちらから', users_guest_sign_in_path, method: :post, class: "guest" %>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <% if @user.errors.any? %>
@@ -14,31 +16,27 @@
     <% end %>
 
   <div class="field">
-    <%= f.label :ニックネーム %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname", placeholder: "ニックネームを入力", class: "registration-btn" %>
   </div>
 
   <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力", class: "registration-btn"  %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %>文字以上で入力してください)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力", class: "registration-btn"  %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードを入力", class: "registration-btn"  %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="actions field">
+    <%= f.submit "新規登録", class: "registration-btn" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= link_to 'ログイン画面へ',new_user_session_path, class:"login" %>

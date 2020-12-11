@@ -1,10 +1,9 @@
 class Article < ApplicationRecord
-  
+
   validates :title, presence: true
   validates :explanation, presence: true
 
   belongs_to :user
-  belongs_to :task
   has_many :article_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -23,6 +22,7 @@ class Article < ApplicationRecord
     # Destroy old taggings:
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(tag_name:old_name)
+      Tag.find_by(tag_name: old_name).destroy
     end
 
     # Create new taggings:

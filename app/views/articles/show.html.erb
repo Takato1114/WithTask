@@ -1,18 +1,23 @@
 <h1>記事詳細</h1>
-
-<h2 style="display:inline;"><%= @article.title %></h2>
-<span id ="favorite-btn_<%= @article.id %>">
-	<%= render partial: 'favorites/favorite-btn', locals: { article: @article} %>　コメント数<%= @article.article_comments.count %>件
-</span><br>
-投稿者：<%= @article.user.nickname %>　更新日時：<%= @article.updated_at.strftime("%Y年%m月%d日") %>
-
-<% @article_tags.each do |tag| %>
-  <p>#<%= tag.tag_name %></p>
-<% end %>
+<div class ="article-box1">
+  <h2 style="display:inline;"><%= @article.title %></h2>
+  <span id ="favorite-btn_<%= @article.id %>">
+  	<%= render partial: 'favorites/favorite-btn', locals: { article: @article} %>
+  </span>
+</div>
+<div class ="article-box2">
+投稿者：<%= @article.user.nickname %>　投稿日：<%= @article.created_at.strftime("%Y年%m月%d日") %>　更新日：<%= @article.updated_at.strftime("%Y年%m月%d日") %><br>
+</div>
+<% @article.tags.each do |tag| %>
+    <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
+  <% end %><br>
 <div class="explanation-box">
   <h4><%= safe_join(@article.explanation.split("\n"),tag(:br)) %></h4>
 </div>
 
+<% if @article_comment.present? %>
+<h5 class="fa fa-comments comment-show" aria-hidden="true">コメント</h5>
+<% end %>
 <div class ="comment">
 	<%= render partial: 'article_comments/comment', locals: { article: @article, article_comment: @article_comment} %>
 </div>

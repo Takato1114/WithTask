@@ -1,7 +1,10 @@
   <% article.article_comments.each do |article_comment| %>
     <div class="comment-box">
-      <p class="comment_user_position"><%= article_comment.user.nickname %></p>
-    	<div class="comment_position"><%= article_comment.comment %>
+      <div class="comment_user_position">
+        <p class="comment_user"><%= article_comment.user.nickname %></p>
+        <p class="comment_created"><%= article_comment.created_at.strftime("%Y年%m月%d日") %></p>
+      </div>
+    	<div class="comment_position">　<%= article_comment.comment %>
       	<% if current_user == article_comment.user %>
         	<%= link_to 'Destroy', article_article_comment_path(article_comment.article_id, article_comment.id), class: 'btn-sm btn-danger', id: 'comment_destroy_positon', method: :delete %>
       	<% end %>
