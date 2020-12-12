@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   get '/homes/about' => 'homes#about'
   get '/users/mypage' => 'users#mypage'
   get '/users/unsubscribe' => 'users#unsubscribe'
-  patch '/users/quit' => 'users#quit_update'
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update, :destroy]
   # resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :tasks do
     patch '/update_status' =>'tasks#update_status'

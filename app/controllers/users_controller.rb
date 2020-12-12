@@ -17,7 +17,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    if @user.update(user_params)
+    if @user.email == 'guest@example.com'
+      redirect_to users_mypage_path, alert: 'ゲストユーザー情報は変更できません。'
+    elsif @user.update(user_params)
       flash[:success] = "ユーザー情報を更新しました。"
        redirect_to users_mypage_path
     else
@@ -30,12 +32,16 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
-  def quit_update
+  def destroy
     @user = User.find(current_user.id)
-    @user.update(quit_flag: true)
-    reset_session
-    flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to '/'
+    if @user.email == 'guest@example.com'
+      redirect_to users_mypage_path, alert: 'ゲストユーザーは削除できません。'
+    else
+      @user.destroy
+      reset_session
+      flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+      redirect_to '/'
+    end
   end
 
   private
