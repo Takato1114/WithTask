@@ -194,13 +194,13 @@ footer {
 }
 
 .image1 {
-  background-image: url(about1.png);
+  background-image: image-url("about1.png");
 }
 .image2 {
-  background-image: url(about2.png);
+  background-image: image-url("about2.png");
 }
 .image3 {
-  background-image: url(about3.png);
+  background-image: image-url("about3.png");
 }
 
 .btn-position{
