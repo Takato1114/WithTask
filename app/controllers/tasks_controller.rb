@@ -1,4 +1,7 @@
 class TasksController < ApplicationController
+
+  before_action :login_check, only: [:index, :show, :edit]
+
   def index
     @task = Task.new
     @tasks = Task.where(user_id: current_user.id).rank(:row_order)
@@ -76,6 +79,12 @@ class TasksController < ApplicationController
   private
     def task_params
       params.require(:task).permit(:title, :content, :start_date, :end_date, :status, :user_id, :row_order_position)
+    end
+
+    def login_check
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
     end
 
 end

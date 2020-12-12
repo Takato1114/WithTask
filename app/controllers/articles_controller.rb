@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+  before_action :login_check, only: [:new, :index, :show, :edit]
+
   def new
     @article = Article.new
     # @article.task_id = params[:task_id]
@@ -49,6 +52,10 @@ class ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @article_tags = @article.tags.pluck(:tag_name).join(" ")
+    if current_user != @article.user
+      flash[:danger] = "不正なアクセスです。"
+      redirect_to articles_path
+    end
   end
 
   def update
@@ -83,6 +90,12 @@ class ArticlesController < ApplicationController
 
     def tag_params
       params.require(:article).permit(:tag_names)
+    end
+
+    def login_check
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
     end
 
 end
