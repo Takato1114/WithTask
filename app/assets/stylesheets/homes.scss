@@ -38,10 +38,10 @@ h1:after {
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
-  background: #33FFCC;
+  background: #339966;
   color: #FFE;
   border-radius: 4px;
-  box-shadow: 0px 0px 0px 5px #33FFCC;
+  box-shadow: 0px 0px 0px 5px #339966;
   border: dashed 1px #FFF;
 }
 
@@ -68,10 +68,10 @@ h1:after {
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
-  background: #FFCC99;
+  background: #FF9900;
   color: #FFE;
   border-radius: 4px;
-  box-shadow: 0px 0px 0px 5px #FFCC99;
+  box-shadow: 0px 0px 0px 5px #FF9900;
   border: dashed 1px #FFF;
 }
 
@@ -81,4 +81,8 @@ h1:after {
 
 .allbtn-position{
   text-align: center;
+}
+
+#slide-box-about{
+  height: 600px;
 }
