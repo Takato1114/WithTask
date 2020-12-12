@@ -6,8 +6,6 @@ class Task < ApplicationRecord
 
   belongs_to :user
 
-  enum status: {Todo: 0, Done: 1}
-
   include RankedModel
   ranks :row_order
 

@@ -19,9 +19,6 @@
                             <span>詳細
                             <%= f.text_field :content, class: "form-control", placeholder: "タイトルの詳細を記入してください" %>
                             </span>
-                            <span>ステータス
-                              <%= f.select :status, Task.statuses.keys %>
-                              </span>
                           </div>
                             <div class="modal-footer">
                                 <%= f.hidden_field :user_id, :value => current_user.id %>
