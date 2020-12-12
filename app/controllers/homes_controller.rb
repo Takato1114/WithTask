@@ -1,4 +1,7 @@
 class HomesController < ApplicationController
+
+  before_action :login_check, only: [:top_after_login]
+
   def top_before_login
   end
 
@@ -9,5 +12,12 @@ class HomesController < ApplicationController
 
   def about
   end
+
+  private
+    def login_check
+      unless user_signed_in?
+        redirect_to '/'
+      end
+    end
 
 end

@@ -2,9 +2,8 @@
   <nav id="nav-container">
     <ui class="nav-contents">
       <li class="nav-menu">ようこそ<%= current_user.nickname %>さん</li>
-      <li class="nav-li">本日のタスク数:<%= Task.where(user_id: current_user.id).where('start_date <= ?', Time.zone.now).where('end_date >= ?', Time.zone.now).count %></li>
+      <li class="nav-li">現在のタスク数:<%= Task.where(user_id: current_user.id).where('start_date <= ?', Time.zone.now).where('end_date >= ?', Time.zone.now).count %></li>
       <li class="nav-li">累計投稿記事数:<%= Article.where(user_id: current_user.id).count %></li>
-
 
       <li class="nav-menu">MENU</li>
       <li class="nav-li">
