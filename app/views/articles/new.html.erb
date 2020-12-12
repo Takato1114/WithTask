@@ -1,6 +1,17 @@
 <h1>記事投稿</h1>
 
 <%= form_with model:@article, method: :post, local:true do |f| %>
+<% if @article.errors.any? %>
+  <div id="error_explantion">
+    <div class="alert-position">
+        <ul>
+          <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+<% end %>
   <div class="field">
     <%= f.label :タイトル %><br />
     <%= f.text_field :title, size:"60x1" %>
