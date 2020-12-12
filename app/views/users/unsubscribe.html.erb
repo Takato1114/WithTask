@@ -12,7 +12,7 @@
     <br>
     <div class="">
       <div class="btn-toolbar">
-        <%= link_to "　退会する　", users_quit_path, method: :patch, data: {confirm: "本当に退会してもよろしいですか？"}, class:"btn btn-danger btn-lg" %>
+        <%= link_to "　退会する　", user_path(current_user.id), method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, class:"btn btn-danger btn-lg" %>
       </div>
     </div>
     <div class="mypage-back-position">
