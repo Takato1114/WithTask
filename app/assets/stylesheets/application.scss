@@ -24,7 +24,7 @@ html, body {
 
 body{
     padding-top:70px;
-    background-color: #f9f9f9;
+    background-color: #FFFFEE;
 }
 
 p { line-height: 1.7 }
@@ -187,4 +187,22 @@ footer {
   text-align: center;
   line-height: 130px;
   font-family: 'Hannotate TC', 'Avenir', YuGothic, "Bradley Hand", Courier, "Segoe Print", sans-serif;
+}
+
+#slide-box{
+  height: 500px;
+}
+
+.image1 {
+  background-image: url(about1.png);
+}
+.image2 {
+  background-image: url(about2.png);
+}
+.image3 {
+  background-image: url(about3.png);
+}
+
+.btn-position{
+  text-align: center;
 }
