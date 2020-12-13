@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
+    # ゲストユーザーの編集を不可に
     if @user.email == 'guest@example.com'
       redirect_to users_mypage_path, alert: 'ゲストユーザー情報は変更できません。'
     elsif @user.update(user_params)
@@ -34,6 +35,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(current_user.id)
+    # ゲストユーザーの削除を不可に
     if @user.email == 'guest@example.com'
       redirect_to users_mypage_path, alert: 'ゲストユーザーは削除できません。'
     else

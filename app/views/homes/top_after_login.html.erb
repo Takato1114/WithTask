@@ -1,48 +1,50 @@
 <h1>WithTaskへようこそ！</h1>
 
 <div class="row">
-    <% if @task.errors.any? %>
-      <div id="error_explantion">
-        <div class="alert-position">
-            <ul>
-              <% @task.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-        </div>
+  <% if @task.errors.any? %>
+    <div id="error_explantion">
+      <div class="alert-position">
+        <ul>
+          <% @task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       </div>
-    <% end %>
-    <div id="calendar"></div>
+    </div>
+  <% end %>
+  <!--カレンダーを表示-->
+  <div id="calendar"></div>
+</div>
+<!--スケジュール登録フォームを表示-->
+<div id="inputScheduleForm" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-nm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">スケジュール登録</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_with model:@task, url: tasks_path do |f| %>
+          <div  class="col">
+            <p>
+              <span>タイトル</span>
+              <span><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください(必須)" %></span>
+            </p>
+            <span>開始日時</span>
+            <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+            <span>終了日時</span>
+            <span><%= f.datetime_field :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+            <span>詳細
+            <%= f.text_area :content, class: "form-control", placeholder: "タイトルの詳細を記入してください", size:"60x5" %></span>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "登録する", class: "btn btn-primary" %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-    <div id="inputScheduleForm" class="modal fade" tabindex="-1">
-            <div class="modal-dialog modal-nm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">スケジュール登録</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <%= form_with model:@task, url: tasks_path do |f| %>
-                            <div  class="col">
-                                    <p>
-                                        <span>タイトル</span>
-                                        <span><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください(必須)" %></span>
-                                    </p>
-                                    <span>開始日時</span>
-                                    <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
-                                    <span>終了日時</span>
-                                    <span><%= f.datetime_field :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
-                                    <span>詳細
-                                    <%= f.text_area :content, class: "form-control", placeholder: "タイトルの詳細を記入してください", size:"60x5" %></span>
-                            </div>
-                            <div class="modal-footer">
-                                <%= f.submit "登録する", class: "btn btn-primary" %>
-                                <%= f.hidden_field :user_id, :value => current_user.id %>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
-                        <% end %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%= render 'tasks/edit', tasks: @tasks %>
+</div>
+<!--スケジュール編集フォームを表示-->
+<%= render 'tasks/edit', tasks: @tasks %>

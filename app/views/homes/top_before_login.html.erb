@@ -1,42 +1,42 @@
 <div class="top-box">
   <div class="row">
-  <div class="col-lg-4">
-    <h1>WithTaskへようこそ</h1>
-    <div class="withtask-description">
-      <p>タスクの記録と知識の共有を図れるサイトです。 <br>
-      カレンダーを通じて日々のタスクを明確にすることが簡単にできます。<br>
-      タスクを通じて得られた知見を記事として記録することができ、 <br>
-      同じ目標を持つ他者へ発信することでモチベーションの維持に繋がります。 <br>
+    <div class="col-lg-4">
+      <h1>WithTaskへようこそ</h1>
+      <div class="withtask-description">
+        <p>タスクの記録と知識の共有を図れるサイトです。 <br>
+        カレンダーを通じて日々のタスクを明確にすることが簡単にできます。<br>
+        タスクを通じて得られた知見を記事として記録することができ、 <br>
+        同じ目標を持つ他者へ発信することでモチベーションの維持に繋がります。 <br>
+      </div>
     </div>
-  </div>
 
-  <div class="col-lg-8">
-    <div id="slide-box">
-      <div id="theTarget">
-        <div class="image1"></div>
-        <div class="image2"></div>
-        <div class="image3"></div>
+    <!--スライドショー-->
+    <div class="col-lg-8">
+      <div id="slide-box">
+        <div id="theTarget">
+          <div class="image1"></div>
+          <div class="image2"></div>
+          <div class="image3"></div>
+        </div>
       </div>
     </div>
   </div>
-  </div>
 
-<div class="row">
-  <div class="col-lg-4">
+  <div class="row">
+    <div class="col-lg-4">
       <div class="btn-position">
         <%= link_to '　 新規登録 　',new_user_registration_path, class:"signup-btn-stitch" %>
       </div>
-      </div>
-      <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
       <div class="btn-position">
         <%= link_to ' 　ログイン　 ',new_user_session_path, class:"login-btn-stitch" %>
       </div>
-      </div>
-      <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4">
       <div class="btn-position">
         <%= link_to 'ゲストログイン', users_guest_sign_in_path, {method: :post ,class:"guest-btn-stitch"} %>
       </div>
-      </div>
-</div>
+    </div>
   </div>
 </div>

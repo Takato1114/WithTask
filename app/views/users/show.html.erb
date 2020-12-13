@@ -1,16 +1,17 @@
 <h1><%= @user.nickname %>さんの投稿記事一覧</h1>
 
 <% @articles.each do |article| %>
-<div class ="article-box">
-  <div class ="article-box1">
-    <h2 class ="article_title"><%= link_to article.title, article_path(article) %></h2>
-  </div>
+  <div class ="article-box">
+    <div class ="article-box1">
+      <h2 class ="article_title"><%= link_to article.title, article_path(article) %></h2>
+    </div>
     <span class ="article-box2">投稿者：<%= article.user.nickname %>　投稿日：<%= article.created_at.strftime("%Y年%m月%d日") %>　更新日：<%= article.updated_at.strftime("%Y年%m月%d日") %></span><br>
-  <% article.tags.each do |tag| %>
-    <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
-  <% end %><br>
-  <span id ="favorite-btn_<%= article.id %>" class="favorite-comment">
-    <%= render partial: 'favorites/favorite-btn', locals: { article: article} %></span>
+    <% article.tags.each do |tag| %>
+      <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
+    <% end %><br>
+    <span id ="favorite-btn_<%= article.id %>" class="favorite-comment">
+      <%= render partial: 'favorites/favorite-btn', locals: { article: article} %>
+    </span>
     <span>コメント数：<%= article.article_comments.count %>件</span>
-</div>
+  </div>
 <% end %>

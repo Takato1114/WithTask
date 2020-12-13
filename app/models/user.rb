@@ -13,14 +13,16 @@ class User < ApplicationRecord
   has_many :article_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  def active_for_authentication?
-    super && (self.quit_flag == false)
-  end
+  # 退会フラグ
+  # def active_for_authentication?
+  #   super && (self.quit_flag == false)
+  # end
 
+  # ゲストログイン時のユーザー情報生成
   def self.guest
     find_or_create_by!(nickname: 'ゲストユーザー', email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
-      # user.confirmed_at = Time.now  # Confirmable を使用している場合は必要
     end
   end
+
 end

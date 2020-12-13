@@ -4,8 +4,8 @@ class TasksController < ApplicationController
 
   def index
     @task = Task.new
-    @tasks = Task.where(user_id: current_user.id).rank(:row_order)
-    # .where('start_date <= ?', Date.today).where('end_date >= ?', Date.today)
+    @tasks = Task.where(user_id: current_user.id)
+    # タスクリストのドラッグアンドドロップ機能（未実装）
     # @tasks = Task.where(user_id: current_user.id).rank(:row_order)
   end
 
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update(task_params)
       flash[:success] = "タスクの更新が完了しました。"
-       redirect_to homes_top_path
+      redirect_to homes_top_path
     else
       flash[:danger] = "タスクの更新に失敗しました。※タイトル・開始日時・終了日時は必須です。"
       @tasks = Task.where(user_id: current_user.id)
@@ -53,9 +53,9 @@ class TasksController < ApplicationController
   def update_status
     @task = Task.find(params[:task_id])
     if @task.update(task_params)
-       redirect_to tasks_path
+      redirect_to tasks_path
     else
-    render 'index'
+      render 'index'
     end
   end
 

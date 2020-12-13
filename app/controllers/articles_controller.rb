@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    # @article.task_id = params[:task_id]
   end
 
   def index
@@ -13,7 +12,7 @@ class ArticlesController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @articles = @tag.articles.order(created_at: :desc)
     else
-    @articles = Article.all
+      @articles = Article.all
 
     end
   end
@@ -23,8 +22,8 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
     if @article.save(article_params)
       tag_list = params[:article][:tag_name].split(/[[:blank:]]+/).select(&:present?)
-       @article.save_tags(tag_list)
-       flash[:success] = "記事の投稿が完了しました。"
+      @article.save_tags(tag_list)
+      flash[:success] = "記事の投稿が完了しました。"
       redirect_to article_path(@article.id)
     else
       flash[:danger] = "記事の登録に失敗しました。"
@@ -40,7 +39,6 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    # byebug
     @article.tags.each do |tag|
       Tag.find_by(id: tag.id).destroy
     end
@@ -62,12 +60,12 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     if @article.update(article_params)
       tag_list = params[:article][:tag_name].split(/[[:blank:]]+/).select(&:present?)
-       @article.save_tags(tag_list)
-       flash[:success] = "記事の更新が完了しました。"
+      @article.save_tags(tag_list)
+      flash[:success] = "記事の更新が完了しました。"
       redirect_to article_path(@article.id)
     else
       flash[:danger] = "記事の更新に失敗しました。"
-    render :edit
+      render :edit
     end
   end
 

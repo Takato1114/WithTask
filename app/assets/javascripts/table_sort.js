@@ -1,3 +1,4 @@
+// タスクリストのドラックアンドドロップ機能
 $(function(){
   $('.table-sortable').sortable({
     axis: 'y',

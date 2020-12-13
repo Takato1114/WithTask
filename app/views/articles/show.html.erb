@@ -6,27 +6,30 @@
   </span>
 </div>
 <div class ="article-box2">
-投稿者：<%= link_to @article.user.nickname, user_path(@article.user.id) %>　投稿日：<%= @article.created_at.strftime("%Y年%m月%d日") %>　更新日：<%= @article.updated_at.strftime("%Y年%m月%d日") %><br>
+  投稿者：<%= link_to @article.user.nickname, user_path(@article.user.id) %>　投稿日：<%= @article.created_at.strftime("%Y年%m月%d日") %>　更新日：<%= @article.updated_at.strftime("%Y年%m月%d日") %><br>
 </div>
 <% @article.tags.each do |tag| %>
-    <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
-  <% end %><br>
+  <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
+<% end %><br>
 <div class="explanation-box">
   <h4><%= safe_join(@article.explanation.split("\n"),tag(:br)) %></h4>
 </div>
 
+<!--コメントが存在する場合表示-->
 <% if @article_comment.present? %>
-<h5 class="fa fa-comments comment-show" aria-hidden="true">コメント</h5>
+  <h5 class="fa fa-comments comment-show" aria-hidden="true">コメント</h5>
 <% end %>
 <div class ="comment">
 	<%= render partial: 'article_comments/comment', locals: { article: @article, article_comment: @article_comment} %>
 </div>
 
-    <%= form_with model:[@article,@article_comment] do |f| %>
-      <%= f.text_area :comment, size:"60x3", placeholder: "コメントはこちらへ記入してください。" %>
-      <%= f.submit '送信'%>
-    <% end %>
+<!--コメント機能-->
+<%= form_with model:[@article,@article_comment] do |f| %>
+  <%= f.text_area :comment, size:"60x3", placeholder: "コメントはこちらへ記入してください。" %>
+  <%= f.submit '送信'%>
+<% end %>
 
+<!--記事投稿者＝ログインユーザーの場合表示-->
 <% if @article.user_id == current_user.id %>
   <%= link_to '記事編集へ', edit_article_path(@article.id), class:"btn btn-primary" %>
   <%= link_to '記事を削除する', article_path(@article.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>

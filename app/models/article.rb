@@ -10,6 +10,7 @@ class Article < ApplicationRecord
   has_many :article_tag_relations, dependent: :destroy
   has_many :tags, through: :article_tag_relations
 
+  # いいね機能
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
@@ -19,30 +20,21 @@ class Article < ApplicationRecord
     old_tags = current_tags - tag_list
     new_tags = tag_list - current_tags
 
-    # Destroy old taggings:
+    # 古いタグを削除
     old_tags.each do |old_name|
       self.tags.delete Tag.find_by(tag_name:old_name)
       Tag.find_by(tag_name: old_name).destroy
     end
 
-    # Create new taggings:
+    # 新しいタグを追加
     new_tags.each do |new_name|
       article_tag = Tag.find_or_create_by(tag_name:new_name)
       self.tags << article_tag
     end
-    # tag_list.each do |tag|
-    #   unless find_tag = Tag.find_by(tag_name: tag.downcase)
-    #     begin
-    #       self.tags.create!(tag_name: tag)
-    #     rescue
-    #       nil
-    #     end
-    #   else
-    #     ArticleTagRelation.create!(article_id: self.id, tag_id: find_tag.id)
-    #   end
-    # end
+
   end
 
+  # 検索機能
   def self.search(search)
     if search
       Article.where(['title LIKE ?', "%#{search}%"])
@@ -51,6 +43,7 @@ class Article < ApplicationRecord
     end
   end
 
+  # ソート機能
   def self.sort(sort)
     case sort
     when 'new'
