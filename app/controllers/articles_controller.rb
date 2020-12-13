@@ -13,7 +13,6 @@ class ArticlesController < ApplicationController
       @articles = @tag.articles.order(created_at: :desc)
     else
       @articles = Article.all
-
     end
   end
 
@@ -72,7 +71,7 @@ class ArticlesController < ApplicationController
   def search
     # ワード検索の場合
     if params[:search].present?
-      @articles = Article.search(params[:search])
+      @articles = Article.search(params[:search])..reverse_order
     # 並び替えの場合
     elsif params[:sort].present?
       @articles = Article.sort(params[:sort])
