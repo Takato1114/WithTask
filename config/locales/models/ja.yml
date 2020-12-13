@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      article: 記事
+      user: ユーザー
+    attributes:
+      article:
+        title: タイトル
+        explanation: 説明文
+      user:
+        nickname: ニックネーム

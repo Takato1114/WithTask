@@ -1,0 +1,22 @@
+<h1>退会画面</h1>
+
+<div class="container quit-box">
+  <div class="row">
+    <div class="quit-message">
+      <h3 class=""><strong>本当に退会しますか？</strong></h3>
+      <br></br>
+      <h4 class="">退会するとこれまでの</h4>
+      <h4 class="">投稿記事が閲覧できなくなります。</h4>
+      <h4 class="">退会する場合は退会するをクリックしてください。</h4>
+    </div>
+    <br>
+    <div class="">
+      <div class="btn-toolbar">
+        <%= link_to "　退会する　", user_path(current_user.id), method: :delete, data: {confirm: "本当に退会してもよろしいですか？"}, class:"btn btn-danger btn-lg" %>
+      </div>
+    </div>
+    <div class="mypage-back-position">
+      <%= link_to "マイページへ戻る", users_mypage_path, class:"mypage-back"%>
+    </div>
+  </div>
+</div>

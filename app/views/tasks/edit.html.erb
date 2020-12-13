@@ -1,0 +1,30 @@
+<!--未使用-->
+<h1>タスク編集画面</h1>
+
+<%= form_with model:@task, local:true do |f| %>
+  <table class ="table">
+    <tr>
+      <td><%= f.label :タスク名 %></td>
+      <td><%= f.text_field :title, autofocus: true %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :タスク概要 %></td>
+      <td><%= f.text_area :content %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :開始日時 %></td>
+      <td><%= f.datetime_field :start_date %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :開始日時 %></td>
+      <td><%= f.datetime_field :end_date %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :ステータス %></td>
+      <td><%= f.select :status, Task.statuses.keys %></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <%= f.submit "タスクを編集する", class:"btn btn-primary" %>
+  </div>
+<% end %>

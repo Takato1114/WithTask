@@ -1,0 +1,42 @@
+<!--未使用-->
+<h1>Task Menu</h1>
+
+<h2>本日のタスク</h2>
+<%= form_with url: tasks_search_path, method: :get, local: true do |f| %>
+  <%= f.text_field :search %>
+  <%= f.submit '検索', name: nil %>
+<% end %>
+
+<%= form_with url: tasks_search_path, method: :get, local: true do |f| %>
+  <%= f.select :sort, [ '選択してください',
+                        ['ToDo', 'todo'],
+                        ['Done', 'done'],
+                      ] %>
+  <%= f.submit '絞り込む', name: nil %>
+<% end %>
+<table class ="table table-sortable">
+  <thead>
+    <tr>
+    <th>タスク名</th>
+    <th>開始日時</th>
+    <th>終了日時</th>
+    <th>ステータス</th>
+    </tr>
+  </thead>
+  <body>
+    <% @tasks.each do |task| %>
+      <%= content_tag "tr", class: "item success", data: { model_name: task.class.name.underscore, update_url: task_sort_path(task.id)} do %>
+        <td><%= task.title %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.end_date %></td>
+        <td>
+          <%= form_with model:task, url: task_update_status_path(task_id: task.id), method: :patch, local:true, data: {"turbolinks" => false} do |f| %>
+          <%= f.select :status, Task.statuses.keys %>
+          <%= f.submit "更新" %>
+          <% end %>
+        </td>
+        <td><%= link_to "タスク詳細へ", task_path(task)%></td>
+      <% end %>
+    <% end %>
+  </body>
+</table>

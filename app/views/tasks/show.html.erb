@@ -1,0 +1,29 @@
+<!--未使用-->
+<h2>タスク詳細</h2>
+
+<table class ="table">
+  <tr>
+    <td>タスク名</td>
+    <td><%= @task.title %></td>
+  </tr>
+  <tr>
+    <td>タスク概要</td>
+    <td><%= @task.content %></td>
+  </tr>
+  <tr>
+    <td>開始日時</td>
+    <td><%= @task.start_date.strftime("%Y年%m月%d日 %H時%M分") %></td>
+  </tr>
+  <tr>
+    <td>終了日時</td>
+    <td><%= @task.start_date.strftime("%Y年%m月%d日 %H時%M分")  %></td>
+  </tr>
+  <tr>
+    <td>ステータス</td>
+    <td><%= @task.status %></td>
+  </tr>
+</table>
+
+<%= link_to 'タスク編集へ', edit_task_path(@task.id), class:"btn btn-primary" %>
+<%= link_to 'タスクを削除する', task_path(@task.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
+<%= link_to '関連記事投稿へ', new_article_path(task_id: @task.id), class:"btn btn-primary" %>

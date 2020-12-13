@@ -1,0 +1,31 @@
+<div id ="sidemenu">
+  <nav id="nav-container">
+    <ui class="nav-contents">
+      <li class="nav-menu">ようこそ<%= current_user.nickname %>さん</li>
+      <li class="nav-li">現在のタスク数:<%= Task.where(user_id: current_user.id).where('start_date <= ?', Time.zone.now).where('end_date >= ?', Time.zone.now).count %></li>
+      <li class="nav-li">累計投稿記事数:<%= Article.where(user_id: current_user.id).count %></li>
+
+      <li class="nav-menu">MENU</li>
+      <li class="nav-li">
+        <%= link_to homes_top_path do %>
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>　ホームへ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to new_article_path do %>
+          <span class="fa fa-pencil-square-o" aria-hidden="true"></span>　記事投稿へ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to articles_path , data: {"turbolinks" => false} do %>
+          <span class="glyphicon glyphicon-book" aria-hidden="true"></span>　記事一覧へ
+        <% end %>
+      </li>
+      <li class="nav-li">
+        <%= link_to users_mypage_path do %>
+          <span class="glyphicon glyphicon-user" aria-hidden="true"></span>　マイページへ
+        <% end %>
+      </li>
+    </ui>
+  </nav>
+</div>

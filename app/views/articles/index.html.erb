@@ -1,0 +1,46 @@
+<h1>投稿記事一覧</h1>
+<!--タグが存在する場合のみ表示-->
+<% unless @tag_list.blank? %>
+  <ul id ="nav-tag">
+    <% @tag_list.each do |tag| %>
+      <li id="nav-tag-li">
+        #<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<div class ="article-search-position">
+  <%= form_with url: articles_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :search %>
+    <%= f.submit '検索', name: nil %>
+  <% end %>
+  <div class ="article-sort-position">
+    <%= form_with url: articles_search_path, method: :get, local: true do |f| %>
+      <%= f.select :sort, [['投稿が新しい順', 'new'],
+                          ['投稿が古い順', 'old'],
+                          ['いいねが多い順', 'likes']
+                          ] %>
+      <%= f.submit '並び替え', name: nil %>
+    <% end %>
+  </div>
+</div>
+
+<% if @articles.present? %>
+  <% @articles.each do |article| %>
+    <div class ="article-box">
+      <div class ="article-box1">
+        <h2 class ="article_title"><%= link_to article.title, article_path(article) %></h2>
+      </div>
+      <span class ="article-box2">投稿者：<%= link_to article.user.nickname, user_path(article.user.id) %>　投稿日：<%= article.created_at.strftime("%Y年%m月%d日") %>　更新日：<%= article.updated_at.strftime("%Y年%m月%d日") %></span><br>
+      <% article.tags.each do |tag| %>
+        <span class ="tag_name">#<%= link_to tag.tag_name, articles_path(tag_id:tag.id) %></span>
+      <% end %><br>
+      <span id ="favorite-btn_<%= article.id %>" class="favorite-comment">
+        <%= render partial: 'favorites/favorite-btn', locals: { article: article} %>
+      </span>
+      <span>コメント数：<%= article.article_comments.count %>件</span>
+    </div>
+  <% end %>
+<% else %>
+ <h4>一致する記事は0件です。</h4>
+<% end %>

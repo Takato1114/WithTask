@@ -1,0 +1,19 @@
+<h1>ログイン</h1>
+
+<%= link_to 'ゲストログイン（閲覧用）はこちらから', users_guest_sign_in_path, method: :post, class: "guest" %>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力", class: "login-btn" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "パスワードを入力", class: "login-btn" %>
+  </div>
+
+  <div class="actions field">
+    <%= f.submit "ログイン", class: "login-btn" %>
+  </div>
+<% end %>
+
+<%= link_to '新規登録画面へ',new_user_registration_path, class:"signup" %>
