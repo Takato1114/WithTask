@@ -1,34 +1,35 @@
+<!--タスク編集のフォーム-->
 <% tasks.each do |task| %>
-    <div id='inputScheduleEditForm_<%= task.id %>' class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-nm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">スケジュール編集</h4>
-                </div>
-                <div class="modal-body">
-                        <%= form_with model:task do |f| %>
-                          <div  class="col">
-                            <p>
-                                <span>タイトル</span>
-                                <span id="inputTitle" value=""><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください" %></span>
-                            </p>
-                            <span>開始日時</span>
-                            <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
-                            <span>終了日時</span>
-                            <span><%= f.datetime_field  :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
-                            <span>詳細
-                            <%= f.text_field :content, class: "form-control", placeholder: "タイトルの詳細を記入してください" %>
-                            </span>
-                          </div>
-                            <div class="modal-footer">
-                                <%= f.hidden_field :user_id, :value => current_user.id %>
-                                <%= f.submit "編集する", class: "btn btn-primary" %>
-                                <%= link_to 'タスクを削除する', task_path(task.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-                            </div>
-                        <% end %>
-                </div>
-            </div>
+  <div id='inputScheduleEditForm_<%= task.id %>' class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-nm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">スケジュール編集</h4>
         </div>
+        <div class="modal-body">
+          <%= form_with model:task do |f| %>
+            <div  class="col">
+              <p>
+                <span>タイトル</span>
+                <span id="inputTitle" value=""><%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力してください" %></span>
+              </p>
+              <span>開始日時</span>
+              <span><%= f.datetime_field  :start_date, placeholder: "XXXX-XX-XX", class:"field" %> ~ </span><br>
+              <span>終了日時</span>
+              <span><%= f.datetime_field  :end_date, placeholder: "XXXX-XX-XX", class:"field" %></span><br>
+              <span>詳細
+                <%= f.text_field :content, class: "form-control", placeholder: "タイトルの詳細を記入してください" %>
+              </span>
+            </div>
+            <div class="modal-footer">
+              <%= f.hidden_field :user_id, :value => current_user.id %>
+              <%= f.submit "編集する", class: "btn btn-primary" %>
+              <%= link_to 'タスクを削除する', task_path(task.id),method: :delete, data: { confirm: "本当に削除してもよろしいですか。（復元はできません。）" }, class:"btn btn-primary" %>
+              <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
+  </div>
 <% end %>

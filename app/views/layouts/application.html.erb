@@ -16,9 +16,10 @@
 
   <body data-turbolinks="false">
     <div class="fix-wrapper">
-  <%= render 'layouts/header' %>
-    <div class="container">
+    <%= render 'layouts/header' %>
+      <div class="container">
       <%= render 'layouts/flash' %>
+        <!--ログインしている場合-->
         <% if user_signed_in? %>
           <div class="col-lg-3">
             <%= render 'layouts/sidemenu' %>
@@ -26,10 +27,11 @@
           <div class="col-lg-9">
             <%= yield %>
           </div>
+          <!--ログインしていない場合-->
         <% else %>
           <%= yield %>
         <% end %>
-    </div>
+      </div>
     <%= render 'layouts/footer' %>
   </body>
 </html>

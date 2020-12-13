@@ -14,10 +14,10 @@ class HomesController < ApplicationController
   end
 
   private
-    def login_check
-      unless user_signed_in?
-        redirect_to '/'
-      end
+  def login_check
+    unless user_signed_in?
+      redirect_to '/'
     end
+  end
 
 end

@@ -1,15 +1,16 @@
 <h1>記事編集画面</h1>
+<!--エラーメッセージ-->
 <% if @article.errors.any? %>
-      <div id="error_explantion">
-        <div class="alert-position">
-            <ul>
-              <% @article.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-        </div>
-      </div>
-    <% end %>
+  <div id="error_explantion">
+    <div class="alert-position">
+        <ul>
+          <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+<% end %>
 <%= form_with model:@article, local:true do |f| %>
   <div class="field">
     <%= f.label :タイトル %><br />
@@ -23,7 +24,6 @@
     <%= f.label :説明欄 %><br />
     <%= f.text_area :explanation, size:"60x10" %>
   </div>
-
   <div class="actions">
     <%= f.submit "内容を変更する", class:"btn btn-primary" %>
   </div>

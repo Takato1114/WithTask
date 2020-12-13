@@ -21,8 +21,10 @@
 //= require_tree .
 //= require moment
 //= require fullcalendar
+
+// カレンダー機能
 $(function () {
-    // 画面遷移を検知
+    // 画面遷移を検知する
     $(document).on('turbolinks:load', function () {
         if ($('#calendar').length) {
 
@@ -39,7 +41,7 @@ $(function () {
             });
             $(document).on('turbolinks:before-cache', clearCalendar);
 
-            //events: '/events.json', 以下に追加
+            //events: '/tasks.json', 以下に追加
             $('#calendar').fullCalendar({
                 events: '/tasks.json',
                 //カレンダー上部を年月で表示させる
@@ -76,7 +78,7 @@ $(function () {
                     element.css("font-size", "0.8em");
                     element.css("padding", "5px");
                 },
-                // 日付クリック
+                // 日付をクリック
                 dayClick : function ( date , jsEvent , view ) {
                 $('#inputScheduleForm').modal('show');
                 },
@@ -94,6 +96,7 @@ $(function () {
     });
 });
 
+スライドショー
 $(document).ready(function () {
   $("#theTarget").skippr({
     // スライドショーの変化 ("fade" or "slide")
