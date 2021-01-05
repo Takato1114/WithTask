@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @articles = @tag.articles.order(created_at: :desc)
     else
-      @articles = Article.all
+      @articles = Article.all.order(created_at: :desc)
     end
   end
 
