@@ -14,6 +14,11 @@
 <div class="explanation-box">
   <h4><%= safe_join(@article.explanation.split("\n"),tag(:br)) %></h4>
 </div>
+<% unless @article.reference_url.nil? %>
+  <div class="">
+    参考URL:<%= text_url_to_link(h(@article.reference_url)).html_safe %>
+  </div>
+<% end %>
 
 <!--コメントが存在する場合表示-->
 <% if @article_comment.present? %>
