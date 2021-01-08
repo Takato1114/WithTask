@@ -24,6 +24,10 @@
     <%= f.label :説明欄 %><br />
     <%= f.text_area :explanation, size:"60x10" %>
   </div>
+  <div class="field">
+    <%= f.label :参考記事URL %><br />
+    <%= f.text_field :reference_url, size:"60x1" %>
+  </div>
   <div class="actions">
     <%= f.submit "内容を変更する", class:"btn btn-primary" %>
   </div>
