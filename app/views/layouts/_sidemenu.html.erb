@@ -7,8 +7,10 @@
           現在のタスク数:<%= Task.where(user_id: current_user.id).where('start_date <= ?', Time.zone.now).where('end_date >= ?', Time.zone.now).count %>
         <% end %>
       </li>
-      <li class="nav-li">累計投稿記事数:<%= Article.where(user_id: current_user.id).count %></li>
-
+      <li class="nav-li">
+        <%= link_to user_path(current_user.id) do %>
+          累計投稿記事数:<%= Article.where(user_id: current_user.id).count %></li>
+        <% end %>
       <li class="nav-menu">MENU</li>
       <li class="nav-li">
         <%= link_to homes_top_path do %>
