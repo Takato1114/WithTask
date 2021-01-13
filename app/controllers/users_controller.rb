@@ -44,6 +44,15 @@ class UsersController < ApplicationController
       flash[:success] = "ありがとうございました。またのご利用を心よりお待ちしております。"
       redirect_to '/'
     end
+
+  def following
+    @user = User.find(params[:id])
+  end
+
+  def follower
+    @user = User.find(params[:id])
+  end
+
   end
 
   private
