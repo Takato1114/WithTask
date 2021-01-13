@@ -18,6 +18,10 @@ Rails.application.routes.draw do
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
+  
+  # フォローフォロワー数
+  get 'follows/:id' => 'users#following', as: 'follows'
+  get 'followers/:id' => 'users#follower', as: 'followers'
 
   # resources :tasks, only: [:index, :create, :show, :edit, :update, :destroy]
   resources :tasks do
